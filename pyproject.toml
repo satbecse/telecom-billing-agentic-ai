@@ -1,0 +1,62 @@
+[project]
+name = "telecom-billing-agentic-ai"
+version = "0.1.0"
+description = "A multi-agent AI system for telecom billing inquiries using LangChain, LangGraph, and Pinecone RAG"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Demo", email = "demo@example.com"}
+]
+
+dependencies = [
+    # LangChain ecosystem
+    "langchain>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "langchain-core>=0.3.0",
+    
+    # LangGraph for agent orchestration
+    "langgraph>=0.2.0",
+    
+    # OpenAI API
+    "openai>=1.50.0",
+    
+    # Pinecone vector database
+    "pinecone-client>=5.0.0",
+    
+    # Environment management
+    "python-dotenv>=1.0.0",
+    
+    # Type hints
+    "typing-extensions>=4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.5.0",
+    "mypy>=1.10.0",
+]
+
+[project.scripts]
+ingest = "app.ingest:run_ingestion"
+billing-cli = "app.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501"]  # Line length handled by formatter
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true

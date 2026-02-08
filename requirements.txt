@@ -1,0 +1,45 @@
+# Telecom Billing Agentic AI - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# =============================================================================
+# CORE DEPENDENCIES
+# =============================================================================
+
+# LangChain ecosystem for LLM applications
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langchain-core>=0.3.0
+
+# LangGraph for multi-agent workflows
+langgraph>=0.2.0
+
+# OpenAI API client
+openai>=1.50.0
+
+# Pinecone vector database client (renamed from pinecone-client)
+pinecone>=5.0.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# =============================================================================
+# UTILITY DEPENDENCIES
+# =============================================================================
+
+# Type hints (Python 3.11+ has most built-in, but helpful for compatibility)
+typing-extensions>=4.0.0
+
+# Better console output  
+rich>=13.0.0
+
+# =============================================================================
+# DEVELOPMENT DEPENDENCIES (optional)
+# =============================================================================
+
+# For testing
+# pytest>=8.0.0
+# pytest-asyncio>=0.23.0
+
+# For linting
+# ruff>=0.5.0
+# mypy>=1.10.0

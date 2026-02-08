@@ -1,0 +1,79 @@
+DOCUMENT ID: DOC_1_PLANS_AND_PRICING
+TITLE: TelcoMax Wireless Plans and Pricing Guide
+EFFECTIVE DATE: January 1, 2026
+VERSION: 2.1
+
+=============================================================================
+SECTION 1: MOBILE PLAN TIERS
+=============================================================================
+
+BASIC MOBILE PLAN
+-----------------
+Monthly Base Price: $29.99/month
+Data Allowance: 5 GB high-speed data (throttled to 512 Kbps after limit)
+Voice: Unlimited domestic calls
+Text: Unlimited domestic SMS/MMS
+International: Not included (see add-ons)
+Hotspot: Not available
+Streaming Quality: SD (480p) only
+
+PRO MOBILE PLAN
+---------------
+Monthly Base Price: $49.99/month
+Data Allowance: 25 GB high-speed data (throttled to 1 Mbps after limit)
+Voice: Unlimited domestic + Canada/Mexico calls
+Text: Unlimited domestic + international SMS
+International: 100 minutes included
+Hotspot: 10 GB included
+Streaming Quality: HD (1080p)
+Priority Support: Yes
+
+UNLIMITED ELITE PLAN
+--------------------
+Monthly Base Price: $79.99/month
+Data Allowance: Truly unlimited high-speed data (no throttling)
+Voice: Unlimited worldwide calls to 80+ countries
+Text: Unlimited worldwide SMS/MMS
+International: Unlimited to 80+ countries
+Hotspot: 50 GB high-speed hotspot
+Streaming Quality: 4K UHD
+Priority Support: Yes
+Premium Perks: Free streaming bundle (Netflix, Disney+, Hulu)
+
+=============================================================================
+SECTION 2: ADDITIONAL SERVICES AND ADD-ONS
+=============================================================================
+
+INTERNATIONAL CALLING ADD-ON
+----------------------------
+Price: $10.00/month
+Includes: 500 minutes to 40+ countries
+
+DEVICE PROTECTION PLAN
+----------------------
+Price: $12.99/month
+Coverage: Accidental damage, theft, loss
+Deductible: $99-$249 depending on device tier
+
+PREMIUM VOICEMAIL
+-----------------
+Price: $4.99/month
+Features: Visual voicemail, voicemail-to-email transcription
+
+FAMILY LINE DISCOUNT
+--------------------
+Lines 2-4: $10 discount per line
+Lines 5+: $15 discount per line
+Maximum lines per account: 10
+
+=============================================================================
+SECTION 3: TAXES AND REGULATORY FEES
+=============================================================================
+
+The following fees are applied to all plans:
+- Federal Universal Service Fee: $2.50/month
+- State Telecommunications Tax: Varies by state (typically 4-8%)
+- E911 Emergency Services Fee: $1.50/month
+- Administrative Fee: $3.00/month
+
+Note: All prices shown are before applicable taxes and fees.

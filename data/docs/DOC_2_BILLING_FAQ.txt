@@ -1,0 +1,68 @@
+DOCUMENT ID: DOC_2_BILLING_FAQ
+TITLE: TelcoMax Billing Frequently Asked Questions
+LAST UPDATED: December 15, 2025
+VERSION: 3.0
+
+=============================================================================
+SECTION 1: BILLING CYCLE AND INVOICES
+=============================================================================
+
+Q: When is my billing cycle?
+A: Your billing cycle is a 30-day period that begins on your plan activation date. 
+   For example, if you activated on the 15th, your cycle runs from the 15th of 
+   each month to the 14th of the following month.
+
+Q: When are invoices generated?
+A: Invoices are generated on the last day of your billing cycle and delivered 
+   within 24-48 hours via email or postal mail, depending on your preference.
+
+Q: What is the payment due date?
+A: Payment is due 15 days after the invoice date. For example, if your invoice 
+   is dated January 15, payment is due by January 30.
+
+=============================================================================
+SECTION 2: PRORATION RULES
+=============================================================================
+
+Q: What is proration?
+A: Proration is when we calculate charges based on the portion of the billing 
+   cycle you actually used a service, rather than the full monthly price.
+
+Q: When does proration occur?
+A: Proration applies when you:
+   - Start a new plan mid-cycle (partial first month)
+   - Add a new service or add-on mid-cycle
+   - Upgrade or downgrade your plan mid-cycle
+   - Cancel service before the end of your cycle (no refund for partial months)
+
+Q: How is prorated amount calculated?
+A: Formula: (Monthly Price / 30) × Number of days service was active
+   Example: Adding Device Protection ($12.99/month) on day 20 of a 30-day cycle
+   Prorated charge = ($12.99 / 30) × 10 = $4.33
+
+=============================================================================
+SECTION 3: PAYMENT METHODS
+=============================================================================
+
+Accepted payment methods:
+- Credit Cards: Visa, Mastercard, American Express, Discover
+- Debit Cards: Any card with Visa/Mastercard logo
+- Bank Account (ACH): Checking or savings account
+- Digital Wallets: Apple Pay, Google Pay, PayPal
+- Cash: At authorized retail locations only
+
+AutoPay Discount: Customers enrolled in AutoPay receive a $5/month discount 
+on their monthly bill.
+
+=============================================================================
+SECTION 4: UNDERSTANDING YOUR BILL
+=============================================================================
+
+Your monthly invoice includes the following sections:
+1. Account Summary: Total amount due and due date
+2. Plan Charges: Your base plan monthly fee
+3. Add-on Services: Additional services you've subscribed to
+4. Usage Charges: Overage or one-time usage fees
+5. Taxes and Fees: Government-mandated fees and taxes
+6. Credits and Adjustments: Any promotional credits or account adjustments
+7. Previous Balance: Outstanding balance from prior invoices

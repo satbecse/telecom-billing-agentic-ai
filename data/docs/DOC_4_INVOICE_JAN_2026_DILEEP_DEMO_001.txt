@@ -1,0 +1,84 @@
+DOCUMENT ID: DOC_4_INVOICE_JAN_2026_DILEEP_DEMO_001
+DOCUMENT TYPE: Monthly Invoice
+CLASSIFICATION: CONFIDENTIAL - BILLING DATA
+GENERATED: January 15, 2026
+
+=============================================================================
+                         TELCOMAX WIRELESS
+                       MONTHLY BILLING STATEMENT
+=============================================================================
+
+Account Number: ACC-789456123
+Customer Name: Dileep Kumar
+Invoice Number: INV-2026-01-789456123
+Invoice Date: January 15, 2026
+Billing Period: December 15, 2025 - January 14, 2026
+
+=============================================================================
+ACCOUNT SUMMARY
+=============================================================================
+
+Previous Balance:                                              $0.00
+Payments Received (Thank You!):                              -$0.00
+                                                            --------
+Balance Forward:                                               $0.00
+
+Current Charges:                                             $137.14
+                                                            --------
+TOTAL AMOUNT DUE:                                           $137.14
+PAYMENT DUE DATE:                                    January 30, 2026
+
+=============================================================================
+CURRENT CHARGES DETAIL
+=============================================================================
+
+MONTHLY PLAN CHARGES
+--------------------
+Pro Mobile Plan (Dec 15 - Jan 14)                            $49.99
+AutoPay Discount                                             -$5.00
+                                                   Subtotal: $44.99
+
+ADD-ON SERVICES
+---------------
+Device Protection Plan                                       $12.99
+International Calling Add-On                                 $10.00
+Premium Voicemail                                             $4.99
+                                                   Subtotal: $27.98
+
+DEVICE PAYMENT
+--------------
+iPhone 15 Pro Max (Payment 10 of 24)                         $41.67
+
+USAGE CHARGES
+-------------
+International Call Overage (35 min @ $0.25/min)               $8.75
+  - Calls to India: 35 minutes on Dec 28, 2025
+
+TAXES AND REGULATORY FEES
+-------------------------
+Federal Universal Service Fee                                 $2.50
+Texas State Telecom Tax (6.25%)                               $5.75
+E911 Emergency Services Fee                                   $1.50
+Administrative Fee                                            $3.00
+Local Franchise Fee                                           $1.00
+                                                   Subtotal: $13.75
+
+=============================================================================
+CHARGES SUMMARY
+=============================================================================
+
+Monthly Plan Charges:                                        $44.99
+Add-on Services:                                             $27.98
+Device Payment:                                              $41.67
+Usage Charges:                                                $8.75
+Taxes and Fees:                                              $13.75
+                                                            --------
+TOTAL CURRENT CHARGES:                                      $137.14
+
+=============================================================================
+IMPORTANT NOTICES
+=============================================================================
+
+* Your AutoPay is scheduled for January 30, 2026 from Visa ending 4532.
+* You have used 22.4 GB of your 25 GB high-speed data this cycle.
+* Questions? Call 1-800-TELCOMAX or visit telcomax.example/support

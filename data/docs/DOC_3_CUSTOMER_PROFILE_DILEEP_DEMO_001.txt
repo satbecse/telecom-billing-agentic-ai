@@ -1,0 +1,78 @@
+DOCUMENT ID: DOC_3_CUSTOMER_PROFILE_DILEEP_DEMO_001
+DOCUMENT TYPE: Customer Account Profile
+CLASSIFICATION: CONFIDENTIAL - ACCOUNT DATA
+LAST UPDATED: January 5, 2026
+
+=============================================================================
+CUSTOMER INFORMATION
+=============================================================================
+
+Customer ID: CUST-DILEEP-2024-001
+Account Number: ACC-789456123
+Customer Name: Dileep Kumar
+Email: dileep.kumar@email.example
+Phone: (555) 123-4567
+Account Status: ACTIVE
+Member Since: March 15, 2024
+
+=============================================================================
+BILLING ADDRESS
+=============================================================================
+
+Street: 1234 Oak Valley Drive, Apt 5B
+City: Austin
+State: Texas
+ZIP: 78701
+Country: United States
+
+=============================================================================
+CURRENT PLAN DETAILS
+=============================================================================
+
+Plan Name: Pro Mobile Plan
+Plan Code: PLAN-PRO-MOBILE
+Monthly Base Price: $49.99/month
+Billing Cycle Start: 15th of each month
+Payment Method: AutoPay (Visa ending 4532)
+AutoPay Discount Applied: Yes (-$5.00/month)
+
+=============================================================================
+ACTIVE ADD-ON SERVICES
+=============================================================================
+
+1. Device Protection Plan
+   - Service Code: ADDON-DEVICE-PROTECT
+   - Monthly Fee: $12.99
+   - Activated: June 1, 2024
+
+2. International Calling Add-On
+   - Service Code: ADDON-INTL-CALL
+   - Monthly Fee: $10.00
+   - Activated: September 10, 2024
+
+3. Premium Voicemail
+   - Service Code: ADDON-VM-PREMIUM
+   - Monthly Fee: $4.99
+   - Activated: March 15, 2024 (with plan activation)
+
+=============================================================================
+DEVICE INFORMATION
+=============================================================================
+
+Primary Device: iPhone 15 Pro Max (256GB)
+IMEI: 353456789012345
+Device Payment Plan: $41.67/month (24-month plan)
+Remaining Payments: 14 months
+Device Balance: $583.38
+
+=============================================================================
+ACCOUNT NOTES
+=============================================================================
+
+[2025-11-20] Customer called regarding data usage. Confirmed Pro plan includes 
+             25 GB high-speed data. Customer satisfied.
+             
+[2025-10-05] Applied one-time $25 courtesy credit for network outage in 
+             customer's area on October 1-2, 2025.
+
+[2024-06-01] Customer added Device Protection after purchasing new iPhone.

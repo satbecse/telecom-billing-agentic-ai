@@ -1,0 +1,126 @@
+DOCUMENT ID: DOC_5_POLICIES_DISPUTE_LATEFEES
+TITLE: TelcoMax Payment, Dispute, and Late Fee Policies
+EFFECTIVE DATE: January 1, 2025
+VERSION: 4.2
+REGULATORY COMPLIANCE: FCC, State PUC
+
+=============================================================================
+SECTION 1: LATE PAYMENT POLICY
+=============================================================================
+
+GRACE PERIOD
+------------
+Customers have a 15-day grace period from the invoice date to submit payment.
+No late fees are assessed during this period.
+
+LATE FEE SCHEDULE
+-----------------
+If payment is not received by the due date:
+
+Days 1-15 Past Due:
+- Late Fee: $10.00 flat fee
+- No service interruption
+- Reminder notification sent via email and SMS
+
+Days 16-30 Past Due:
+- Additional Late Fee: $15.00 (total $25.00 in late fees)
+- Account flagged for potential suspension
+- Phone call from collections team
+
+Days 31-60 Past Due:
+- Service Suspension: Data and voice services suspended
+- Reactivation Fee: $35.00 (in addition to outstanding balance)
+- Account referred to collections department
+
+Days 61+ Past Due:
+- Service Termination: Account permanently closed
+- Final Bill: Remaining device balance becomes due immediately
+- Credit Reporting: Delinquency reported to credit bureaus
+- Collections: Account sent to third-party collections agency
+
+MAXIMUM LATE FEES
+-----------------
+Per Texas PUC regulations, total late fees cannot exceed $50.00 per billing 
+cycle. Late fees are waived for customers experiencing documented financial 
+hardship (see Hardship Program below).
+
+=============================================================================
+SECTION 2: DISPUTE RESOLUTION PROCESS
+=============================================================================
+
+STEP 1: INITIAL DISPUTE FILING
+------------------------------
+Timeframe: Must be filed within 60 days of invoice date
+Methods to file a dispute:
+- Online: telcomax.example/dispute
+- Phone: 1-800-TELCOMAX (option 4)
+- Mail: TelcoMax Dispute Center, PO Box 12345, Dallas, TX 75201
+- In-Store: Any authorized TelcoMax retail location
+
+Required information:
+- Account number
+- Invoice number being disputed
+- Specific charges disputed
+- Reason for dispute
+- Supporting documentation (if applicable)
+
+STEP 2: INVESTIGATION
+---------------------
+- TelcoMax will investigate within 30 business days
+- Disputed amount is placed on hold (no late fees accrue on disputed amount)
+- Customer notified of investigation status every 10 business days
+
+STEP 3: RESOLUTION
+------------------
+Possible outcomes:
+A) Dispute UPHELD: Charges removed or credited to account
+B) Dispute PARTIALLY UPHELD: Partial credit issued
+C) Dispute DENIED: Original charges stand; customer must pay within 15 days
+
+APPEAL PROCESS
+--------------
+If dispute is denied, customer may appeal within 30 days to:
+- TelcoMax Executive Customer Relations
+- Texas Public Utility Commission (PUC)
+- Federal Communications Commission (FCC) for interstate matters
+
+=============================================================================
+SECTION 3: SERVICE SUSPENSION AND RESTORATION
+=============================================================================
+
+VOLUNTARY SUSPENSION (SEASONAL HOLD)
+-------------------------------------
+- Available for up to 90 days per calendar year
+- Fee: $10.00/month during suspension
+- Device payments continue during suspension
+- Request 7 days in advance
+
+INVOLUNTARY SUSPENSION (NON-PAYMENT)
+------------------------------------
+- Occurs after 30 days past due
+- Restore within 60 days to avoid termination
+- Restoration Fee: $35.00
+- Same-day restoration available after payment received
+
+EMERGENCY ACCESS
+----------------
+Per FCC regulations, suspended accounts can still:
+- Dial 911 for emergencies
+- Receive incoming calls from TelcoMax customer service
+- Access account online to make payments
+
+=============================================================================
+SECTION 4: HARDSHIP ASSISTANCE PROGRAM
+=============================================================================
+
+Eligibility:
+- Documented job loss, medical emergency, or natural disaster
+- Account in good standing for previous 6 months
+
+Benefits:
+- Up to 90-day payment extension
+- Waived late fees during hardship period
+- Reduced temporary plan option ($15.00/month basic service)
+- Device payment deferral (up to 3 months)
+
+Apply online or call 1-800-TELCOMAX option 7.
