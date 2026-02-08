@@ -1,0 +1,79 @@
+DOCUMENT ID: DOC_9_INVOICE_JAN_2026_SURESH_003
+DOCUMENT TYPE: Monthly Invoice
+CLASSIFICATION: CONFIDENTIAL - BILLING DATA
+INVOICE DATE: January 10, 2026
+DUE DATE: January 25, 2026
+
+=============================================================================
+                         TELCOMAX COMMUNICATIONS
+                           MONTHLY STATEMENT
+=============================================================================
+
+Customer: Suresh Patel
+Account Number: ACC-321654987
+Billing Period: December 10, 2025 - January 9, 2026
+Statement Date: January 10, 2026
+
+=============================================================================
+ACCOUNT SUMMARY
+=============================================================================
+
+Previous Balance:                                             $35.48
+Late Payment Fee (paid 5 days late):                           $5.00
+Payments Received (Dec 20):                                  -$40.48
+------------------------------------------------------------------------
+Current Charges:                                              $35.48
+------------------------------------------------------------------------
+TOTAL AMOUNT DUE:                                             $35.48
+PAYMENT DUE DATE:                                     January 25, 2026
+
+=============================================================================
+PLAN CHARGES
+=============================================================================
+
+Basic Starter Plan                                            $29.99
+   - Line: (555) 345-6789
+   - Data: 5GB High-Speed (then 2G speeds)
+   - Calls: Unlimited Domestic
+   - Texts: Unlimited
+------------------------------------------------------------------------
+Subtotal Plan Charges:                                        $29.99
+
+=============================================================================
+ADD-ON SERVICES
+=============================================================================
+
+Voicemail Plus                                                 $2.99
+------------------------------------------------------------------------
+Subtotal Add-On Services:                                      $2.99
+
+=============================================================================
+TAXES AND FEES
+=============================================================================
+
+Telecom Tax (6.25%)                                            $2.06
+E911 Emergency Services Fee                                    $1.50
+Administrative Fee                                             $0.75
+Regulatory Recovery Fee                                        $0.69
+------------------------------------------------------------------------
+Subtotal Taxes and Fees:                                       $5.00
+
+=============================================================================
+SPECIAL NOTICES
+=============================================================================
+
+* Your data usage this month: 4.2GB of 5GB included
+* Good news! You're within your data limit this month.
+* Consider upgrading to Pro plan for 25GB data at just $49.99/month
+
+=============================================================================
+PAYMENT OPTIONS
+=============================================================================
+
+* Online: Pay at www.telcomax.example/pay
+* Phone: Call 1-800-TELCO-PAY
+* AutoPay: Save $5/month by enrolling in AutoPay
+
+=============================================================================
+TOTAL CURRENT CHARGES:                                        $35.48
+=============================================================================

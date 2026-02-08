@@ -1,0 +1,70 @@
+DOCUMENT ID: DOC_8_CUSTOMER_PROFILE_SURESH_003
+DOCUMENT TYPE: Customer Account Profile
+CLASSIFICATION: CONFIDENTIAL - ACCOUNT DATA
+LAST UPDATED: January 10, 2026
+
+=============================================================================
+CUSTOMER INFORMATION
+=============================================================================
+
+Customer ID: CUST-SURESH-2024-003
+Account Number: ACC-321654987
+Customer Name: Suresh Patel
+Email: suresh.patel@email.example
+Phone: (555) 345-6789
+Account Status: ACTIVE
+Member Since: February 10, 2024
+
+=============================================================================
+BILLING ADDRESS
+=============================================================================
+
+Street: 890 Maple Avenue, Apt 3C
+City: Houston
+State: Texas
+ZIP: 77001
+Country: United States
+
+=============================================================================
+CURRENT PLAN DETAILS
+=============================================================================
+
+Plan Name: Basic Starter Plan
+Plan Code: PLAN-BASIC-STARTER
+Monthly Base Price: $29.99/month
+Billing Cycle Start: 10th of each month
+Payment Method: Manual Payment (Bank Transfer)
+AutoPay Discount Applied: No
+
+=============================================================================
+ACTIVE ADD-ON SERVICES
+=============================================================================
+
+1. Voicemail Plus
+   - Service Code: ADDON-VM-PLUS
+   - Monthly Fee: $2.99
+   - Activated: February 10, 2024
+
+=============================================================================
+DEVICE INFORMATION
+=============================================================================
+
+Primary Device: Samsung Galaxy A54 (128GB)
+IMEI: 321654987654321
+Purchase Type: Paid in Full
+Device Balance: $0.00
+
+=============================================================================
+ACCOUNT NOTES
+=============================================================================
+
+[2026-01-08] Customer inquired about upgrading to Pro plan. 
+             Sent comparison sheet via email.
+
+[2025-11-15] Late payment reminder sent. Customer paid within 5 days.
+
+[2025-09-01] Customer requested international calling rates.
+             Recommended International Add-On ($10/month).
+
+[2024-02-10] New customer activation. Basic plan selected for 
+             budget-conscious needs.

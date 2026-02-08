@@ -1,0 +1,89 @@
+DOCUMENT ID: DOC_10_CUSTOMER_PROFILE_JOHN_004
+DOCUMENT TYPE: Customer Account Profile
+CLASSIFICATION: CONFIDENTIAL - ACCOUNT DATA
+LAST UPDATED: January 12, 2026
+
+=============================================================================
+CUSTOMER INFORMATION
+=============================================================================
+
+Customer ID: CUST-JOHN-2023-004
+Account Number: ACC-654123789
+Customer Name: John Smith
+Email: john.smith@email.example
+Phone: (555) 456-7890
+Account Status: ACTIVE
+Member Since: November 5, 2023
+
+=============================================================================
+BILLING ADDRESS
+=============================================================================
+
+Street: 123 Business Park Drive
+City: San Antonio
+State: Texas
+ZIP: 78201
+Country: United States
+
+=============================================================================
+CURRENT PLAN DETAILS
+=============================================================================
+
+Plan Name: Business Pro Plan
+Plan Code: PLAN-BUSINESS-PRO
+Monthly Base Price: $69.99/month
+Billing Cycle Start: 5th of each month
+Payment Method: AutoPay (American Express ending 1234)
+AutoPay Discount Applied: Yes (-$5.00/month)
+
+=============================================================================
+ACTIVE ADD-ON SERVICES
+=============================================================================
+
+1. Mobile Hotspot (50GB)
+   - Service Code: ADDON-HOTSPOT-50
+   - Monthly Fee: $15.00
+   - Activated: November 5, 2023
+
+2. International Business Calling
+   - Service Code: ADDON-INTL-BUSINESS
+   - Monthly Fee: $20.00
+   - Includes: 500 minutes to 50+ countries
+   - Activated: January 1, 2024
+
+3. Device Insurance Premium
+   - Service Code: ADDON-INSURANCE-PREM
+   - Monthly Fee: $15.99
+   - Includes: Theft, loss, and accidental damage
+   - Activated: December 1, 2023
+
+=============================================================================
+DEVICE INFORMATION
+=============================================================================
+
+Primary Device: iPhone 15 Pro (256GB)
+IMEI: 654123789654123
+Device Payment Plan: $54.17/month (24-month plan)
+Remaining Payments: 10 months
+Device Balance: $541.70
+
+Secondary Device: iPad Pro 12.9" (WiFi + Cellular)
+IMEI: 987321654987321
+Data-Only Plan: $10.00/month
+Device Status: Paid in Full
+
+=============================================================================
+ACCOUNT NOTES
+=============================================================================
+
+[2026-01-10] Customer called about roaming charges from recent 
+             Mexico trip. Credited $45 as one-time courtesy.
+
+[2025-12-05] Requested itemized call log for business expense report.
+             Sent via secure email.
+
+[2025-10-15] Upgraded device from iPhone 14 Pro to iPhone 15 Pro.
+             Trade-in credit of $450 applied.
+
+[2024-01-01] Added International Business Calling for frequent 
+             overseas client calls.

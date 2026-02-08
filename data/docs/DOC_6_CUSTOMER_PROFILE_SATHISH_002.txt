@@ -1,0 +1,89 @@
+DOCUMENT ID: DOC_6_CUSTOMER_PROFILE_SATHISH_002
+DOCUMENT TYPE: Customer Account Profile
+CLASSIFICATION: CONFIDENTIAL - ACCOUNT DATA
+LAST UPDATED: January 8, 2026
+
+=============================================================================
+CUSTOMER INFORMATION
+=============================================================================
+
+Customer ID: CUST-SATHISH-2025-002
+Account Number: ACC-456789012
+Customer Name: Sathish Kumar
+Email: sathish.kumar@email.example
+Phone: (555) 234-5678
+Account Status: ACTIVE
+Member Since: June 20, 2025
+
+=============================================================================
+BILLING ADDRESS
+=============================================================================
+
+Street: 567 Pine Street, Suite 12
+City: Dallas
+State: Texas
+ZIP: 75201
+Country: United States
+
+=============================================================================
+CURRENT PLAN DETAILS
+=============================================================================
+
+Plan Name: Ultimate Family Plan
+Plan Code: PLAN-ULTIMATE-FAMILY
+Monthly Base Price: $89.99/month
+Number of Lines: 4
+Billing Cycle Start: 1st of each month
+Payment Method: AutoPay (Mastercard ending 8765)
+AutoPay Discount Applied: Yes (-$10.00/month)
+
+=============================================================================
+ACTIVE ADD-ON SERVICES
+=============================================================================
+
+1. Family Device Protection
+   - Service Code: ADDON-FAMILY-PROTECT
+   - Monthly Fee: $24.99
+   - Covers all 4 lines
+   - Activated: June 20, 2025
+
+2. Cloud Storage Upgrade (100GB)
+   - Service Code: ADDON-CLOUD-100
+   - Monthly Fee: $2.99
+   - Activated: July 15, 2025
+
+=============================================================================
+DEVICE INFORMATION
+=============================================================================
+
+Line 1 (Primary): Samsung Galaxy S24 Ultra (512GB)
+   IMEI: 456789012345678
+   Device Payment Plan: $45.83/month (24-month plan)
+   Remaining Payments: 18 months
+   Device Balance: $824.94
+
+Line 2: iPhone 14 (128GB)
+   IMEI: 567890123456789
+   Paid in full
+
+Line 3: Google Pixel 8
+   IMEI: 678901234567890
+   Device Payment Plan: $29.17/month (24-month plan)
+   Remaining Payments: 12 months
+   Device Balance: $350.04
+
+Line 4: iPhone SE (64GB)
+   IMEI: 789012345678901
+   Paid in full
+
+=============================================================================
+ACCOUNT NOTES
+=============================================================================
+
+[2026-01-05] Customer upgraded from Pro Family to Ultimate Family plan.
+             Waived $35 upgrade fee as loyalty gesture.
+
+[2025-12-15] Customer reported slow data speeds. Issue resolved after 
+             network optimization in customer's area.
+
+[2025-08-10] Added Line 4 for daughter. Applied $25 add-a-line credit.
