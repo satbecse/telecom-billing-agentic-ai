@@ -52,12 +52,18 @@ graph TD
     classDef guardrail fill:#EF476F,stroke:#333,stroke-width:2px,color:#fff
     classDef default fill:#F8F9FA,stroke:#333,stroke-width:1px
 
-    %% Ingestion Pipeline
-    subgraph Data Ingestion Pipeline
-        PDF[Customer PDFs] --> Chunker["Chunker<br/>Fixed-Size, Recursive, Semantic"]:::pipeline
-        Wiki[Wikipedia API] --> Chunker
-        Chunker --> Embeddings[OpenAI Embeddings]:::pipeline
-        Embeddings --> Pinecone[("Pinecone Vector DB<br/>telecom-docs & telecom-wiki")]:::database
+    %% Ingestion Pipeline (Telecom Docs)
+    subgraph Data Ingestion Pipeline: Customer PDFs
+        PDF[Customer PDFs] --> ChunkerDocs["Chunker<br/>Fixed-Size, Recursive, Semantic"]:::pipeline
+        ChunkerDocs --> EmbedDocs[OpenAI Embeddings]:::pipeline
+        EmbedDocs --> PineconeDocs[("Pinecone Vector DB<br/>telecom-docs")]:::database
+    end
+
+    %% Ingestion Pipeline (Wikipedia)
+    subgraph Data Ingestion Pipeline: Wikipedia
+        Wiki[Wikipedia API] --> ChunkerWiki["Chunker<br/>Fixed-Size Only"]:::pipeline
+        ChunkerWiki --> EmbedWiki[OpenAI Embeddings]:::pipeline
+        EmbedWiki --> PineconeWiki[("Pinecone Vector DB<br/>telecom-wiki")]:::database
     end
 
     %% Session Memory
@@ -79,8 +85,8 @@ graph TD
         SalesAgent["Sales Agent<br/>(Wikipedia RAG)"]:::agent
         BillingAgent["Billing Agent<br/>(Customer Docs RAG)"]:::agent
         
-        SalesAgent <--> |Vector Search| Pinecone
-        BillingAgent <--> |Vector Search| Pinecone
+        SalesAgent <--> |Vector Search| PineconeWiki
+        BillingAgent <--> |Vector Search| PineconeDocs
         
         SalesAgent --> SalesGuard["Sales Guardrail<br/>Blocks Data Leaks"]:::guardrail
         BillingAgent --> BillingGuard["Billing Guardrail<br/>Validates JSON format"]:::guardrail
