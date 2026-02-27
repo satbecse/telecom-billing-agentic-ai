@@ -94,14 +94,16 @@ def run_demo_mode():
         print(f"   Trace: {' -> '.join(result.get('trace', [])[:3])}")
 
 
-def run_interactive_mode():
+def run_interactive_mode(session_id: str = None):
     """
     Run in interactive mode where user can type multiple queries.
     
-    NEW: Creates a session ID to remember context between queries.
+    If session_id is provided, it resumes that session from the SQLite store.
+    Otherwise, generates a new one.
     """
-    # Generate a unique session ID for this interactive session
-    session_id = f"interactive_{uuid.uuid4().hex[:8]}"
+    if not session_id:
+        # Generate a unique session ID for this interactive session
+        session_id = f"interactive_{uuid.uuid4().hex[:8]}"
     
     print(f"\n{Colors.BOLD}INTERACTIVE MODE{Colors.RESET}")
     print(f"Session ID: {session_id}")
@@ -195,6 +197,12 @@ Examples:
         help="RAG retrieval strategy: naive (default), hyde, or multi-query"
     )
     
+    parser.add_argument(
+        "--session-id",
+        type=str,
+        help="Optional session ID to resume a previous conversation (e.g. 'demo1')"
+    )
+    
     args = parser.parse_args()
     
     # Setup
@@ -218,11 +226,10 @@ Examples:
     set_rag_strategy(args.rag_strategy)
     print(f"  RAG Strategy: {Colors.INFO}{args.rag_strategy}{Colors.RESET}")
     
-    # Determine mode
     if args.demo:
         run_demo_mode()
     elif args.interactive:
-        run_interactive_mode()
+        run_interactive_mode(args.session_id)
     elif args.query:
         run_single_query(args.query)
     else:
