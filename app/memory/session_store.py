@@ -1,5 +1,5 @@
 """
-Session Store - In-Memory Session Management.
+Session Store - SQLite-Backed Session Management.
 
 CONCEPT: What is a Session Store?
 ==================================
@@ -7,12 +7,13 @@ A session store keeps track of user conversations and context.
 It's like a notepad where we write down important information
 so we don't have to ask the user to repeat themselves.
 
-This implementation uses a simple Python dictionary.
-In production, you might use Redis, a database, or LangGraph's
-built-in checkpointing.
+This implementation uses SQLite for persistent storage.
+Sessions survive application restarts - great for demos!
+
+The database file is stored at: data/sessions.db
 
 Usage:
-    store = SessionStore()
+    store = get_session_store()
     
     # Create or get a session
     session = store.get_or_create("user123")
@@ -25,10 +26,21 @@ Usage:
     print(data.account_id)  # "ACC-DEMO-001"
 """
 
+import sqlite3
+import json
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any
 from datetime import datetime
+from pathlib import Path
 import uuid
+
+from app.config import DATA_DIR
+from app.utils.logging import get_logger
+
+logger = get_logger("session_store")
+
+# Database path
+DB_PATH = DATA_DIR / "sessions.db"
 
 
 @dataclass
@@ -143,12 +155,14 @@ class SessionData:
 
 class SessionStore:
     """
-    In-Memory Session Store.
+    SQLite-Backed Session Store.
     
-    IMPORTANT: This is an in-memory store!
-    - Data is lost when the application restarts
-    - Good for demos and development
-    - For production, use Redis or a database
+    Provides persistent session storage that survives application restarts.
+    The database file is stored at data/sessions.db.
+    
+    Schema:
+        sessions: Stores session metadata and extracted entities
+        conversation_turns: Stores individual conversation messages
     
     Usage:
         store = SessionStore()
@@ -156,12 +170,85 @@ class SessionStore:
         store.update("user123", account_id="ACC-DEMO-001")
     """
     
-    def __init__(self):
-        # The actual storage - a dict mapping session_id -> SessionData
-        self._sessions: Dict[str, SessionData] = {}
-        
-        # For debugging
+    def __init__(self, db_path: Path = None):
+        self._db_path = str(db_path or DB_PATH)
         self._access_count = 0
+        self._init_db()
+    
+    def _get_conn(self) -> sqlite3.Connection:
+        """Get a new database connection."""
+        conn = sqlite3.connect(self._db_path)
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA journal_mode=WAL")  # Better concurrent access
+        return conn
+    
+    def _init_db(self):
+        """Create tables if they don't exist."""
+        conn = self._get_conn()
+        try:
+            conn.executescript("""
+                CREATE TABLE IF NOT EXISTS sessions (
+                    session_id     TEXT PRIMARY KEY,
+                    created_at     TEXT NOT NULL,
+                    last_activity  TEXT NOT NULL,
+                    account_id     TEXT,
+                    customer_name  TEXT,
+                    billing_period TEXT,
+                    current_topic  TEXT,
+                    last_query     TEXT,
+                    last_response  TEXT,
+                    last_doc_ids   TEXT DEFAULT '[]'
+                );
+
+                CREATE TABLE IF NOT EXISTS conversation_turns (
+                    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                    session_id TEXT NOT NULL,
+                    role       TEXT NOT NULL,
+                    content    TEXT NOT NULL,
+                    timestamp  TEXT NOT NULL,
+                    FOREIGN KEY (session_id) REFERENCES sessions(session_id)
+                );
+
+                CREATE INDEX IF NOT EXISTS idx_turns_session 
+                    ON conversation_turns(session_id);
+            """)
+            conn.commit()
+            logger.info(f"SQLite session store initialized at {self._db_path}")
+        finally:
+            conn.close()
+    
+    def _row_to_session(self, row: sqlite3.Row, conn: sqlite3.Connection) -> SessionData:
+        """Convert a database row + its turns into a SessionData object."""
+        session = SessionData(
+            session_id=row["session_id"],
+            created_at=datetime.fromisoformat(row["created_at"]),
+            last_activity=datetime.fromisoformat(row["last_activity"]),
+            account_id=row["account_id"],
+            customer_name=row["customer_name"],
+            billing_period=row["billing_period"],
+            current_topic=row["current_topic"],
+            last_query=row["last_query"],
+            last_response=row["last_response"],
+            last_doc_ids=json.loads(row["last_doc_ids"] or "[]"),
+        )
+        
+        # Load conversation history (last 10 turns)
+        turns = conn.execute(
+            "SELECT role, content, timestamp FROM conversation_turns "
+            "WHERE session_id = ? ORDER BY id DESC LIMIT 10",
+            (row["session_id"],)
+        ).fetchall()
+        
+        session.conversation_history = [
+            ConversationTurn(
+                role=t["role"],
+                content=t["content"],
+                timestamp=datetime.fromisoformat(t["timestamp"])
+            )
+            for t in reversed(turns)  # Reverse so oldest is first
+        ]
+        
+        return session
     
     def create(self, session_id: Optional[str] = None) -> SessionData:
         """
@@ -176,10 +263,20 @@ class SessionStore:
         if session_id is None:
             session_id = f"session_{uuid.uuid4().hex[:8]}"
         
-        session = SessionData(session_id=session_id)
-        self._sessions[session_id] = session
+        now = datetime.now().isoformat()
         
-        return session
+        conn = self._get_conn()
+        try:
+            conn.execute(
+                "INSERT INTO sessions (session_id, created_at, last_activity) VALUES (?, ?, ?)",
+                (session_id, now, now)
+            )
+            conn.commit()
+        finally:
+            conn.close()
+        
+        logger.info(f"Created new session: {session_id}")
+        return SessionData(session_id=session_id)
     
     def get(self, session_id: str) -> Optional[SessionData]:
         """
@@ -192,7 +289,20 @@ class SessionStore:
             SessionData if found, None otherwise
         """
         self._access_count += 1
-        return self._sessions.get(session_id)
+        
+        conn = self._get_conn()
+        try:
+            row = conn.execute(
+                "SELECT * FROM sessions WHERE session_id = ?",
+                (session_id,)
+            ).fetchone()
+            
+            if row is None:
+                return None
+            
+            return self._row_to_session(row, conn)
+        finally:
+            conn.close()
     
     def get_or_create(self, session_id: str) -> SessionData:
         """
@@ -229,17 +339,42 @@ class SessionStore:
                 customer_name="Dileep"
             )
         """
-        session = self.get(session_id)
-        if session is None:
-            return None
+        # Map of allowed fields to their DB column names
+        allowed_fields = {
+            "account_id", "customer_name", "billing_period",
+            "current_topic", "last_query", "last_response", "last_doc_ids"
+        }
         
-        # Update only the fields that are provided
+        updates = {}
         for key, value in kwargs.items():
-            if hasattr(session, key):
-                setattr(session, key, value)
+            if key in allowed_fields:
+                if key == "last_doc_ids" and isinstance(value, list):
+                    updates[key] = json.dumps(value)
+                else:
+                    updates[key] = value
         
-        session.last_activity = datetime.now()
-        return session
+        if not updates:
+            return self.get(session_id)
+        
+        updates["last_activity"] = datetime.now().isoformat()
+        
+        set_clause = ", ".join(f"{k} = ?" for k in updates)
+        values = list(updates.values()) + [session_id]
+        
+        conn = self._get_conn()
+        try:
+            cursor = conn.execute(
+                f"UPDATE sessions SET {set_clause} WHERE session_id = ?",
+                values
+            )
+            conn.commit()
+            
+            if cursor.rowcount == 0:
+                return None
+        finally:
+            conn.close()
+        
+        return self.get(session_id)
     
     def add_conversation_turn(
         self, 
@@ -258,16 +393,50 @@ class SessionStore:
         Returns:
             Updated SessionData
         """
-        session = self.get(session_id)
-        if session is None:
-            return None
+        now = datetime.now().isoformat()
         
-        session.add_turn(role, content)
-        return session
+        conn = self._get_conn()
+        try:
+            # Verify session exists
+            row = conn.execute(
+                "SELECT session_id FROM sessions WHERE session_id = ?",
+                (session_id,)
+            ).fetchone()
+            
+            if row is None:
+                return None
+            
+            # Insert the turn
+            conn.execute(
+                "INSERT INTO conversation_turns (session_id, role, content, timestamp) "
+                "VALUES (?, ?, ?, ?)",
+                (session_id, role, content, now)
+            )
+            
+            # Update last_activity
+            conn.execute(
+                "UPDATE sessions SET last_activity = ? WHERE session_id = ?",
+                (now, session_id)
+            )
+            
+            # Trim to keep only last 10 turns per session
+            conn.execute(
+                "DELETE FROM conversation_turns WHERE id NOT IN ("
+                "  SELECT id FROM conversation_turns WHERE session_id = ? "
+                "  ORDER BY id DESC LIMIT 10"
+                ") AND session_id = ?",
+                (session_id, session_id)
+            )
+            
+            conn.commit()
+        finally:
+            conn.close()
+        
+        return self.get(session_id)
     
     def delete(self, session_id: str) -> bool:
         """
-        Delete a session.
+        Delete a session and its conversation history.
         
         Args:
             session_id: The session to delete
@@ -275,22 +444,57 @@ class SessionStore:
         Returns:
             True if deleted, False if not found
         """
-        if session_id in self._sessions:
-            del self._sessions[session_id]
-            return True
-        return False
+        conn = self._get_conn()
+        try:
+            conn.execute(
+                "DELETE FROM conversation_turns WHERE session_id = ?",
+                (session_id,)
+            )
+            cursor = conn.execute(
+                "DELETE FROM sessions WHERE session_id = ?",
+                (session_id,)
+            )
+            conn.commit()
+            return cursor.rowcount > 0
+        finally:
+            conn.close()
     
     def list_sessions(self) -> List[str]:
         """Get list of all session IDs."""
-        return list(self._sessions.keys())
+        conn = self._get_conn()
+        try:
+            rows = conn.execute(
+                "SELECT session_id FROM sessions ORDER BY last_activity DESC"
+            ).fetchall()
+            return [r["session_id"] for r in rows]
+        finally:
+            conn.close()
     
     def get_stats(self) -> Dict[str, Any]:
         """Get store statistics (for debugging)."""
-        return {
-            "total_sessions": len(self._sessions),
-            "access_count": self._access_count,
-            "sessions": [s.to_dict() for s in self._sessions.values()]
-        }
+        conn = self._get_conn()
+        try:
+            session_count = conn.execute(
+                "SELECT COUNT(*) as cnt FROM sessions"
+            ).fetchone()["cnt"]
+            
+            turn_count = conn.execute(
+                "SELECT COUNT(*) as cnt FROM conversation_turns"
+            ).fetchone()["cnt"]
+            
+            sessions = []
+            for row in conn.execute("SELECT * FROM sessions ORDER BY last_activity DESC").fetchall():
+                sessions.append(self._row_to_session(row, conn).to_dict())
+            
+            return {
+                "total_sessions": session_count,
+                "total_turns": turn_count,
+                "access_count": self._access_count,
+                "db_path": self._db_path,
+                "sessions": sessions
+            }
+        finally:
+            conn.close()
 
 
 # =============================================================================
