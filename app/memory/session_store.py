@@ -39,8 +39,8 @@ from app.utils.logging import get_logger
 
 logger = get_logger("session_store")
 
-# Database path
-DB_PATH = DATA_DIR / "sessions.db"
+# Database path — use the top-level data/ directory
+DB_PATH = DATA_DIR.parent / "sessions.db"
 
 
 @dataclass

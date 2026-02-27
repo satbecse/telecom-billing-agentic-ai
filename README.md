@@ -31,10 +31,10 @@ graph TD
     User([👤 Customer]):::user --> App[📱 Telecom Assistant App]:::app
     App --> Router{{🔀 Smart Router}}:::router
     
-    Router -- "General Questions\n(Plans, AT&T info)" --> Sales[💼 Sales Agent\n(Reads Wikipedia)]:::agent
-    Router -- "Specific Account Info\n(My Bill, Due Date)" --> Billing[📊 Billing Agent\n(Reads Customer PDFs)]:::agent
+    Router -- "General Questions\n(Plans, AT&T info)" --> Sales["💼 Sales Agent\n(Reads Wikipedia)"]:::agent
+    Router -- "Specific Account Info\n(My Bill, Due Date)" --> Billing["📊 Billing Agent\n(Reads Customer PDFs)"]:::agent
     
-    Sales --> QA[✅ Manager Agent\n(Verifies Answers & $ Amounts)]:::manager
+    Sales --> QA["✅ Manager Agent\n(Verifies Answers & $ Amounts)"]:::manager
     Billing --> QA
     
     QA --> User
@@ -54,14 +54,14 @@ graph TD
 
     %% Ingestion Pipeline
     subgraph Data Ingestion Pipeline
-        PDF[Customer PDFs] --> Chunker[Chunker<br/>Fixed-Size, Recursive, Semantic]:::pipeline
+        PDF[Customer PDFs] --> Chunker["Chunker<br/>Fixed-Size, Recursive, Semantic"]:::pipeline
         Wiki[Wikipedia API] --> Chunker
         Chunker --> Embeddings[OpenAI Embeddings]:::pipeline
-        Embeddings --> Pinecone[(Pinecone Vector DB<br/>telecom-docs & telecom-wiki)]:::database
+        Embeddings --> Pinecone[("Pinecone Vector DB<br/>telecom-docs & telecom-wiki")]:::database
     end
 
     %% Session Memory
-    SessionStore[(SQLite Database<br/>Persistent Session Memory)]:::database
+    SessionStore[("SQLite Database<br/>Persistent Session Memory")]:::database
 
     %% Interaction Flow
     User([User Query]) --> LangGraph
@@ -76,19 +76,19 @@ graph TD
         MemoryNode -- "sales_general" --> SalesAgent
         MemoryNode -- "billing_account_specific" --> BillingAgent
         
-        SalesAgent[Sales Agent<br/>(Wikipedia RAG)]:::agent
-        BillingAgent[Billing Agent<br/>(Customer Docs RAG)]:::agent
+        SalesAgent["Sales Agent<br/>(Wikipedia RAG)"]:::agent
+        BillingAgent["Billing Agent<br/>(Customer Docs RAG)"]:::agent
         
         SalesAgent <--> |Vector Search| Pinecone
         BillingAgent <--> |Vector Search| Pinecone
         
-        SalesAgent --> SalesGuard[Sales Guardrail<br/>Blocks Data Leaks]:::guardrail
-        BillingAgent --> BillingGuard[Billing Guardrail<br/>Validates JSON format]:::guardrail
+        SalesAgent --> SalesGuard["Sales Guardrail<br/>Blocks Data Leaks"]:::guardrail
+        BillingAgent --> BillingGuard["Billing Guardrail<br/>Validates JSON format"]:::guardrail
         
         SalesGuard --> ManagerAgent
         BillingGuard --> ManagerAgent
         
-        ManagerAgent[Manager Agent<br/>Validates Citations & $]:::guardrail
+        ManagerAgent["Manager Agent<br/>Validates Citations & $"]:::guardrail
     end
     
     ManagerAgent --> |Approved Response| Output([Final Output])

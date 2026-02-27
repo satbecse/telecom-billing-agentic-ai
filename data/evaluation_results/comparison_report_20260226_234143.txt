@@ -1,0 +1,40 @@
+
+==========================================================================================
+  RAG EVALUATION COMPARISON REPORT
+==========================================================================================
+
+  SUMMARY (Average scores across all queries)
+  --------------------------------------------------------------------------------------
+  RAG Strategy     Chunking        Faithfulness   Relevancy   Correctness   Avg Score
+  --------------------------------------------------------------------------------------
+  HyDE             fixed_size             0.900       0.900         0.760       0.853
+  Multi-Query      fixed_size             0.800       0.900         0.760       0.820
+  Naive            fixed_size             0.750       0.900         0.750       0.800
+  HyDE             recursive              0.830       0.800         0.610       0.747
+  Multi-Query      recursive              0.770       0.800         0.550       0.707
+  Naive            recursive              0.720       0.800         0.550       0.690
+  HyDE             semantic               0.650       0.550         0.170       0.457
+  Multi-Query      semantic               0.730       0.600         0.370       0.567
+  Naive            semantic               0.500       0.650         0.370       0.507
+  --------------------------------------------------------------------------------------
+
+  WINNER: HyDE + fixed_size (avg score: 0.853)
+
+
+  PER-QUERY BREAKDOWN (best combo per query)
+  --------------------------------------------------------------------------------------
+  #    Query                                  Best Combo                     F     R     C    Avg
+  --------------------------------------------------------------------------------------
+  Q1   What is Dileep Kumar's total bill fo... Naive+fixed_size            1.00  1.00  1.00   1.00
+  Q2   Why is Dileep's bill higher this mon... Naive+fixed_size            1.00  1.00  1.00   1.00
+  Q3   What is John Smith's current plan an... Naive+fixed_size            1.00  1.00  1.00   1.00
+  Q4   Did Sathish Kumar have any data over... Naive+fixed_size            1.00  1.00  1.00   1.00
+  Q5   What is the payment due date for Sur... Naive+fixed_size            1.00  1.00  1.00   1.00
+  Q6   What happens if I miss my payment du... Naive+fixed_size            1.00  1.00  1.00   1.00
+  Q7   When was AT&T founded and what was i... Multi-Query+semantic        1.00  1.00  0.00   0.67
+  Q8   What is a Federal Universal Service ... HyDE+fixed_size             1.00  1.00  0.80   0.93
+  Q9   How does AT&T's 5G rollout compare t... HyDE+fixed_size             1.00  0.00  0.00   0.33
+  Q10  Can I dispute a charge on my bill an... Naive+fixed_size            1.00  1.00  0.80   0.93
+  --------------------------------------------------------------------------------------
+
+==========================================================================================
