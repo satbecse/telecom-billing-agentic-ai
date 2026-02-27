@@ -402,6 +402,26 @@ def create_workflow() -> StateGraph:
     """
     Create and compile the LangGraph workflow.
     
+    WORKFLOW STEPS:
+    1. Entry Point: 'router' node
+       - Extracts session memory context
+       - Classifies intent using SalesAgent
+    
+    2. Routing via 'route_after_router':
+       - If intent is sales_general -> go to 'sales' node
+       - If intent is billing_* -> go to 'billing' node
+       
+    3. Sales Path:
+       - 'sales' node uses Wikipedia RAG + Memory
+       - If safe, ends. If blocked by guardrails -> go to 'billing'
+       
+    4. Billing Path:
+       - 'billing' node uses PDF RAG + Memory + strict JSON schema
+       - Always forwards to 'manager' node for verification
+       - 'manager' node uses guardrails to verify citations and $$ amounts
+       - 'manager' forwards to 'format_response'
+       - 'format_response' node constructs final output and ends
+    
     Returns:
         Compiled StateGraph ready for execution
     """
