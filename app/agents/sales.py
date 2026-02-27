@@ -79,7 +79,7 @@ class SalesAgent:
         self.retriever = TelecomRetriever()  # For Wikipedia RAG
         self.system_prompt = SALES_AGENT_SYSTEM_PROMPT
     
-    def classify_query(self, query: str) -> str:
+    def classify_query(self, query: str, context: Optional[str] = None) -> str:
         """
         Classify the user's query intent.
         
@@ -107,12 +107,15 @@ class SalesAgent:
 2. "billing_general" - Questions about billing PROCESSES in general (not their specific account)
    Examples: "How does proration work?", "When are bills generated?", "What payment methods do you accept?"
 
-3. "sales_general" - Questions about plans, pricing, features, or general policies
-   Examples: "What plans do you offer?", "How much is the Pro plan?", "Do you have international calling?"
+3. "sales_general" - Questions about plans, pricing, features, general policies, OR conversational follow-ups/greetings.
+   Examples: "What plans do you offer?", "Hello", "What did I just ask you?", "Thanks!"
 
 Customer Query: "{query}"
-
-Respond with ONLY the category name, nothing else."""
+"""
+        if context:
+            classification_prompt += f"\nPrevious Conversation Context:\n{context}\n"
+            
+        classification_prompt += "\nRespond with ONLY the category name, nothing else."
 
         response = self.openai.chat.completions.create(
             model=self.model,
@@ -157,6 +160,9 @@ Respond with ONLY the category name, nothing else."""
         messages = [
             {"role": "system", "content": self.system_prompt}
         ]
+        
+        if context:
+            messages.append({"role": "system", "content": f"Here is the context of the recent conversation:\n{context}"})
         
         # NEW: Retrieve from Wikipedia knowledge base for general telecom context
         try:

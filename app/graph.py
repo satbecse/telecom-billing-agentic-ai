@@ -165,7 +165,8 @@ def router_node(state: GraphState) -> GraphState:
     print_agent_action("Router", f"Classifying query: '{query[:50]}...'")
     
     # Classify the query
-    intent = sales_agent.classify_query(query)
+    session_context = state.get("session_context")
+    intent = sales_agent.classify_query(query, context=session_context)
     
     print_agent_action("Router", f"Intent classified as: {intent}")
     
@@ -200,7 +201,8 @@ def sales_node(state: GraphState) -> GraphState:
         )
     else:
         # Direct sales response
-        response, needs_routing = sales_agent.generate_response(query)
+        session_context = state.get("session_context")
+        response, needs_routing = sales_agent.generate_response(query, context=session_context)
         
         if needs_routing:
             state["trace"].append("SalesAgent: routing to BillingAgent")
@@ -479,10 +481,24 @@ def run_query(query: str, session_id: Optional[str] = None) -> Dict[str, Any]:
         # Add user message to conversation history
         store.add_conversation_turn(session_id, "user", query)
         
-        # Get existing context
-        session_context = session.get_context_summary()
+        # Get existing context (entities + history)
+        context_parts = []
+        entity_summary = session.get_context_summary()
+        if entity_summary:
+            context_parts.append(entity_summary)
+            
+        history_summary = session.get_conversation_for_prompt(last_n=4)
+        # We don't want to include the very last user message in the history summary 
+        # because we just added it to the DB above, and it's already the primary prompt.
+        # But `get_conversation_for_prompt` gets EVERYTHING. To be safe, we'll let the LLM see it twice,
+        # or we just rely on the LLM to understand. Let's just append it.
+        if history_summary:
+            context_parts.append(history_summary)
+            
+        session_context = "\n\n".join(context_parts)
+        
         if session_context:
-            print(f"Session: {session_context}")
+            print(f"Session Context Loaded (Entities & History)")
     
     print()  # Blank line for formatting
     
