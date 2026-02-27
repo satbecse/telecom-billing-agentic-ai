@@ -18,7 +18,7 @@
 ## ⏱️ Step 1: Architecture Overview (5 mins)
 *Display the `README.md` diagrams.*
 
-* Explain the **Non-Technical View** first: "We have a Smart Router that acts like a receptionist, sending public knowledge questions to Sales, and private account questions to Billing."
+* Explain the **Non-Technical View** first: "The Sales Agent acts as our Front Desk receptionist. It handles general public knowledge questions itself, but transfers private account questions to the Billing department."
 * Explain the **Technical View**: "Notice we separate our vector databases (Pinecone). Sales only reads Wikipedia. Billing only reads PDF chunks. The Manager Agent protects the system by verifying the Billing Agent's math and citations."
 
 ## ⏱️ Step 2: Code Walkthrough (5 mins)
@@ -36,11 +36,11 @@ python -m app.cli --interactive --session-id demo-run --rag-strategy hyde
 
 **Interaction 1: Sales Agent (Wikipedia RAG)**
 > **You:** `When was AT&T founded?`
-* Explain: "The router recognized this as general knowledge and sent it to the Sales Agent, which queried the Wikipedia namespace."
+* Explain: "The Sales Agent recognizes this as a general knowledge question about AT&T and answers it directly by querying the Wikipedia namespace."
 
 **Interaction 2: Billing Agent (Customer PDF RAG)**
 > **You:** `What is the bill for customer ACC-DEMO-001?`
-* Explain: "The router sent this to Billing, extracted the account ID, passed it to the Manager Agent to verify the $137.14 amount against the PDF citation, and returned it."
+* Explain: "The Sales Agent sees this requires private account data, so it extracts the account ID and transfers the question to the Billing Agent. The Manager Agent verifies the $137.14 amount against the PDF citation, and returns it safely."
 
 **Interaction 3: Proving SQLite Memory Persistence**
 > **You:** `exit`

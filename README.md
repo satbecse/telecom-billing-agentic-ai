@@ -29,12 +29,11 @@ graph TD
     classDef manager fill:#E71D36,stroke:#333,stroke-width:2px,color:#fff,shape:rect
 
     User([👤 Customer]):::user --> App[📱 Telecom Assistant App]:::app
-    App --> Router{{🔀 Smart Router}}:::router
+    App --> FrontDesk{"👋 Sales Agent (Front Desk)\n(Asks 'How can I help you?')"}:::agent
     
-    Router -- "General Questions\n(Plans, AT&T info)" --> Sales["💼 Sales Agent\n(Reads Wikipedia)"]:::agent
-    Router -- "Specific Account Info\n(My Bill, Due Date)" --> Billing["📊 Billing Agent\n(Reads Customer PDFs)"]:::agent
+    FrontDesk -- "General Questions\n(Plans, AT&T info)\nReads Wikipedia" --> User
+    FrontDesk -- "Specific Account Info\n(My Bill, Due Date)" --> Billing["📊 Billing Agent\n(Reads Customer PDFs)"]:::agent
     
-    Sales --> User
     Billing --> QA["✅ Manager Agent\n(Verifies Answers & $ Amounts)"]:::agent
     
     QA --> User
@@ -73,25 +72,23 @@ graph TD
     User([User Query]) --> LangGraph
     
     subgraph LangGraph Orchestration
-        Router[Router Node<br/>Intent Classification]:::agent
+        FrontDesk[Sales Agent (Front Desk)<br/>Intent Classification & Wikipedia RAG]:::agent
         MemoryNode[Memory Node<br/>Entity Extraction]:::pipeline
         
-        Router --> |Extracts Entities| MemoryNode
+        FrontDesk --> |Extracts Entities| MemoryNode
         MemoryNode <--> |Save/Load Context| SessionStore
         
-        Router -- "sales_general" --> SalesAgent
-        Router -- "billing_account_specific" --> BillingAgent
+        FrontDesk -- "billing_account_specific" --> BillingAgent
         
-        SalesAgent["Sales Agent<br/>(Wikipedia RAG)"]:::agent
         BillingAgent["Billing Agent<br/>(Customer Docs RAG)"]:::agent
         
-        SalesAgent <--> |Uses Context| MemoryNode
+        FrontDesk <--> |Uses Context| MemoryNode
         BillingAgent <--> |Uses Context| MemoryNode
         
-        SalesAgent <--> |Vector Search| PineconeWiki
+        FrontDesk <--> |Vector Search| PineconeWiki
         BillingAgent <--> |Vector Search| PineconeDocs
         
-        SalesAgent --> SalesGuard["Sales Guardrail<br/>Blocks Data Leaks"]:::guardrail
+        FrontDesk --> SalesGuard["Sales Guardrail<br/>Blocks Data Leaks"]:::guardrail
         BillingAgent --> BillingGuard["Billing Guardrail<br/>Validates JSON format"]:::guardrail
         
         SalesGuard --> |Data Leak Detected| BillingAgent
