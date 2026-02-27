@@ -12,59 +12,86 @@ A multi-agent AI system for telecom billing inquiries, demonstrating enterprise-
 
 ---
 
-## What Does This System Do?
+## What Does This System Do? (Architecture)
 
-This system simulates a telecom customer service experience with three specialized AI agents:
+To fully understand the Agentic AI system, here are two views of the architecture:
 
+### 1. Non-Technical View (The Customer Experience)
+This view shows how a customer interacts with the system, highlighting how queries are intelligently routed to the correct specialized department.
+
+```mermaid
+graph TD
+    %% Styling
+    classDef user fill:#FF9F1C,stroke:#333,stroke-width:2px,color:#fff,font-weight:bold
+    classDef app fill:#2EC4B6,stroke:#333,stroke-width:2px,color:#fff
+    classDef router fill:#011627,stroke:#333,stroke-width:2px,color:#fff,shape:hexagon
+    classDef agent fill:#43A047,stroke:#333,stroke-width:2px,color:#fff,shape:rect
+    classDef manager fill:#E71D36,stroke:#333,stroke-width:2px,color:#fff,shape:rect
+
+    User([👤 Customer]):::user --> App[📱 Telecom Assistant App]:::app
+    App --> Router{{🔀 Smart Router}}:::router
+    
+    Router -- "General Questions\n(Plans, AT&T info)" --> Sales[💼 Sales Agent\n(Reads Wikipedia)]:::agent
+    Router -- "Specific Account Info\n(My Bill, Due Date)" --> Billing[📊 Billing Agent\n(Reads Customer PDFs)]:::agent
+    
+    Sales --> QA[✅ Manager Agent\n(Verifies Answers & $ Amounts)]:::manager
+    Billing --> QA
+    
+    QA --> User
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     USER ASKS A QUESTION                        │
-└───────────────────────────┬─────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  🔀 ROUTER: Classifies the query                                │
-│     • billing_account_specific → BillingAgent                   │
-│     • billing_general → BillingAgent                            │
-│     • sales_general → SalesAgent                                │
-└───────────────────────────┬─────────────────────────────────────┘
-                            │
-        ┌───────────────────┼───────────────────┐
-        ▼                                       ▼
-┌───────────────┐                     ┌───────────────┐
-│  💼 SALES     │                     │  📊 BILLING   │
-│  AGENT        │                     │  AGENT        │
-│               │                     │               │
-│  Handles:     │                     │  Uses RAG to: │
-│  • Plan info  │                     │  • Search docs│
-│  • Pricing    │                     │  • Get amounts│
-│  • Policies   │                     │  • Cite source│
-│               │                     │               │
-│  Uses RAG to: │                     │  MUST provide:│
-│  • Search Wiki│                     │  • Citations  │
-│  for Telecom/ │                     │  • Confidence │
-│  AT&T info    │                     │               │
-└───────────────┘                     └───────┬───────┘
-                                              │
-                                              ▼
-                                    ┌───────────────┐
-                                    │  ✅ MANAGER   │
-                                    │  AGENT        │
-                                    │               │
-                                    │  Validates:   │
-                                    │  • Citations ✓│
-                                    │  • Confidence │
-                                    │  • $ amounts  │
-                                    │               │
-                                    │  Approves or  │
-                                    │  rejects      │
-                                    └───────┬───────┘
-                                            │
-                                            ▼
-                              ┌─────────────────────────┐
-                              │  📋 FINAL RESPONSE      │
-                              │  (with citations)       │
-                              └─────────────────────────┘
+
+### 2. Technical View (The Engineering Architecture)
+This view details the data ingestion pipeline, the LangGraph multi-agent orchestration, and the persistent SQLite memory system.
+
+```mermaid
+graph TD
+    %% Professional Soft Color Palette
+    classDef database fill:#FFD166,stroke:#333,stroke-width:2px,shape:cylinder,font-weight:bold
+    classDef pipeline fill:#118AB2,stroke:#333,stroke-width:1px,color:#fff
+    classDef agent fill:#06D6A0,stroke:#333,stroke-width:2px,color:#000,font-weight:bold
+    classDef guardrail fill:#EF476F,stroke:#333,stroke-width:2px,color:#fff
+    classDef default fill:#F8F9FA,stroke:#333,stroke-width:1px
+
+    %% Ingestion Pipeline
+    subgraph Data Ingestion Pipeline
+        PDF[Customer PDFs] --> Chunker[Chunker<br/>Fixed-Size, Recursive, Semantic]:::pipeline
+        Wiki[Wikipedia API] --> Chunker
+        Chunker --> Embeddings[OpenAI Embeddings]:::pipeline
+        Embeddings --> Pinecone[(Pinecone Vector DB<br/>telecom-docs & telecom-wiki)]:::database
+    end
+
+    %% Session Memory
+    SessionStore[(SQLite Database<br/>Persistent Session Memory)]:::database
+
+    %% Interaction Flow
+    User([User Query]) --> LangGraph
+    
+    subgraph LangGraph Orchestration
+        Router[Router Node<br/>Intent Classification]:::agent
+        MemoryNode[Memory Node<br/>Entity Extraction]:::pipeline
+        
+        Router --> MemoryNode
+        MemoryNode <--> |Save/Load Context| SessionStore
+        
+        MemoryNode -- "sales_general" --> SalesAgent
+        MemoryNode -- "billing_account_specific" --> BillingAgent
+        
+        SalesAgent[Sales Agent<br/>(Wikipedia RAG)]:::agent
+        BillingAgent[Billing Agent<br/>(Customer Docs RAG)]:::agent
+        
+        SalesAgent <--> |Vector Search| Pinecone
+        BillingAgent <--> |Vector Search| Pinecone
+        
+        SalesAgent --> SalesGuard[Sales Guardrail<br/>Blocks Data Leaks]:::guardrail
+        BillingAgent --> BillingGuard[Billing Guardrail<br/>Validates JSON format]:::guardrail
+        
+        SalesGuard --> ManagerAgent
+        BillingGuard --> ManagerAgent
+        
+        ManagerAgent[Manager Agent<br/>Validates Citations & $]:::guardrail
+    end
+    
+    ManagerAgent --> |Approved Response| Output([Final Output])
 ```
 
 ---
