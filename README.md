@@ -35,7 +35,7 @@ graph TD
     Router -- "Specific Account Info\n(My Bill, Due Date)" --> Billing["📊 Billing Agent\n(Reads Customer PDFs)"]:::agent
     
     Sales --> User
-    Billing --> QA["✅ Manager Agent\n(Verifies Answers & $ Amounts)"]:::manager
+    Billing --> QA["✅ Manager Agent\n(Verifies Answers & $ Amounts)"]:::agent
     
     QA --> User
 ```
@@ -76,14 +76,17 @@ graph TD
         Router[Router Node<br/>Intent Classification]:::agent
         MemoryNode[Memory Node<br/>Entity Extraction]:::pipeline
         
-        Router --> MemoryNode
+        Router --> |Extracts Entities| MemoryNode
         MemoryNode <--> |Save/Load Context| SessionStore
         
-        MemoryNode -- "sales_general" --> SalesAgent
-        MemoryNode -- "billing_account_specific" --> BillingAgent
+        Router -- "sales_general" --> SalesAgent
+        Router -- "billing_account_specific" --> BillingAgent
         
         SalesAgent["Sales Agent<br/>(Wikipedia RAG)"]:::agent
         BillingAgent["Billing Agent<br/>(Customer Docs RAG)"]:::agent
+        
+        SalesAgent <--> |Uses Context| MemoryNode
+        BillingAgent <--> |Uses Context| MemoryNode
         
         SalesAgent <--> |Vector Search| PineconeWiki
         BillingAgent <--> |Vector Search| PineconeDocs
@@ -96,7 +99,7 @@ graph TD
         
         BillingGuard --> ManagerAgent
         
-        ManagerAgent["Manager Agent<br/>Validates Citations & $"]:::guardrail
+        ManagerAgent["Manager Agent<br/>Validates Citations & $"]:::agent
     end
     
     ManagerAgent --> |Approved Response| Output([Final Output])
