@@ -54,14 +54,14 @@ graph TD
     %% Ingestion Pipeline (Telecom Docs)
     subgraph Data Ingestion Pipeline: Customer PDFs
         PDF[Customer PDFs] --> ChunkerDocs["Chunker<br/>Fixed-Size, Recursive, Semantic"]:::pipeline
-        ChunkerDocs --> EmbedDocs[OpenAI Embeddings]:::pipeline
+        ChunkerDocs --> EmbedDocs["OpenAI Embeddings<br/>text-embedding-ada-002"]:::pipeline
         EmbedDocs --> PineconeDocs[("Pinecone Vector DB<br/>telecom-docs")]:::database
     end
 
     %% Ingestion Pipeline (Wikipedia)
     subgraph Data Ingestion Pipeline: Wikipedia
         Wiki[Wikipedia API] --> ChunkerWiki["Chunker<br/>Fixed-Size Only"]:::pipeline
-        ChunkerWiki --> EmbedWiki[OpenAI Embeddings]:::pipeline
+        ChunkerWiki --> EmbedWiki["OpenAI Embeddings<br/>text-embedding-ada-002"]:::pipeline
         EmbedWiki --> PineconeWiki[("Pinecone Vector DB<br/>telecom-wiki")]:::database
     end
 
@@ -72,7 +72,7 @@ graph TD
     User([User Query]) --> LangGraph
     
     subgraph LangGraph Orchestration
-        FrontDesk["Sales Agent (Front Desk)<br/>Intent Classification & Wikipedia RAG"]:::agent
+        FrontDesk["Sales Agent (Front Desk)<br/>Intent Classification & Wikipedia RAG<br/>🤖 GPT-4o-mini"]:::agent
         MemoryNode["Memory Node<br/>Entity Extraction"]:::pipeline
         
         FrontDesk --> |Extracts Entities| MemoryNode
@@ -80,7 +80,7 @@ graph TD
         
         FrontDesk -- "billing_account_specific" --> BillingAgent
         
-        BillingAgent["Billing Agent<br/>(Customer Docs RAG)"]:::agent
+        BillingAgent["Billing Agent<br/>(Customer Docs RAG)<br/>🤖 GPT-4o-mini"]:::agent
         
         FrontDesk <--> |Uses Context| MemoryNode
         BillingAgent <--> |Uses Context| MemoryNode
@@ -96,7 +96,7 @@ graph TD
         
         BillingGuard --> ManagerAgent
         
-        ManagerAgent["Manager Agent<br/>Validates Citations & $"]:::agent
+        ManagerAgent["Manager Agent<br/>Validates Citations & $<br/>🤖 GPT-4o-mini (LLM-as-a-Judge)"]:::agent
     end
     
     ManagerAgent --> |Approved Response| Output([Final Output])
