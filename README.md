@@ -72,8 +72,8 @@ graph TD
     User([User Query]) --> LangGraph
     
     subgraph LangGraph Orchestration
-        FrontDesk[Sales Agent (Front Desk)<br/>Intent Classification & Wikipedia RAG]:::agent
-        MemoryNode[Memory Node<br/>Entity Extraction]:::pipeline
+        FrontDesk["Sales Agent (Front Desk)<br/>Intent Classification & Wikipedia RAG"]:::agent
+        MemoryNode["Memory Node<br/>Entity Extraction"]:::pipeline
         
         FrontDesk --> |Extracts Entities| MemoryNode
         MemoryNode <--> |Save/Load Context| SessionStore
