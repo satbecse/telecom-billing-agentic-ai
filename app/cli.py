@@ -20,7 +20,7 @@ import argparse
 import uuid
 
 from app.config import validate_config
-from app.graph import run_query
+from app.graph import run_query, set_rag_strategy
 from app.utils.logging import setup_logging, Colors
 from app.memory.session_store import get_session_store
 
@@ -188,6 +188,13 @@ Examples:
         help="Enable verbose logging"
     )
     
+    parser.add_argument(
+        "--rag-strategy",
+        choices=["naive", "hyde", "multi-query"],
+        default="naive",
+        help="RAG retrieval strategy: naive (default), hyde, or multi-query"
+    )
+    
     args = parser.parse_args()
     
     # Setup
@@ -206,6 +213,10 @@ Examples:
         print(f"\n   Please set up your {Colors.BOLD}.env{Colors.RESET} file.")
         print(f"   See {Colors.BOLD}.env.example{Colors.RESET} for reference.")
         sys.exit(1)
+    
+    # Set RAG strategy
+    set_rag_strategy(args.rag_strategy)
+    print(f"  RAG Strategy: {Colors.INFO}{args.rag_strategy}{Colors.RESET}")
     
     # Determine mode
     if args.demo:

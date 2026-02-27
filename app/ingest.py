@@ -38,6 +38,7 @@ from app.config import (
 )
 from app.rag.pinecone_store import PineconeStore
 from app.utils.logging import setup_logging, get_logger, Colors
+from app.rag.pdf_loader import extract_text_from_pdf
 
 logger = get_logger("ingest")
 
@@ -48,25 +49,30 @@ logger = get_logger("ingest")
 
 def load_documents() -> List[Dict[str, str]]:
     """
-    Load all documents from the data/docs directory.
+    Load all documents from the data/docs/customer_pdfs directory.
     
     Returns:
         List of dicts with 'doc_id', 'filename', and 'content'
     """
     documents = []
     
-    if not DATA_DIR.exists():
-        raise FileNotFoundError(f"Data directory not found: {DATA_DIR}")
+    pdf_dir = DATA_DIR / "customer_pdfs"
+    if not pdf_dir.exists():
+        raise FileNotFoundError(f"PDF directory not found: {pdf_dir}")
     
-    # Find all .txt files in the docs directory
-    doc_files = sorted(DATA_DIR.glob("*.txt"))
+    # Find all .pdf files in the docs directory
+    doc_files = sorted(pdf_dir.glob("*.pdf"))
     
     if not doc_files:
-        raise FileNotFoundError(f"No .txt files found in {DATA_DIR}")
+        raise FileNotFoundError(f"No .pdf files found in {pdf_dir}")
     
     for doc_path in doc_files:
-        content = doc_path.read_text(encoding="utf-8")
+        content = extract_text_from_pdf(str(doc_path))
         
+        if not content:
+            logger.warning(f"Could not extract text from {doc_path.name}")
+            continue
+            
         # Extract doc_id from the first line or filename
         doc_id = doc_path.stem  # Filename without extension
         

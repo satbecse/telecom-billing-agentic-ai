@@ -1,0 +1,104 @@
+A SIM card or SIM (subscriber identity module) is a type of integrated circuit, often in the form of a smart card. They are intended to securely store an international mobile subscriber identity (IMSI) number and its related key, which are used to identify and authenticate subscribers on mobile telephone devices (such as mobile phones, tablets, and laptops). SIMs are also able to run apps and to store arbitrary information like address book contact information, and may be protected using a PIN code to prevent unauthorized use.
+These SIM cards are always used on GSM phones; for CDMA phones, they are needed only for LTE-capable handsets. SIM cards are also used in various satellite phones, smart watches, computers, or cameras. The first SIM cards were the size of credit and bank cards; sizes were reduced several times over the years, usually keeping electrical contacts the same, to fit smaller-sized devices. SIMs are transferable between different mobile devices by removing the card itself.
+
+Technically, the actual physical card is known as a universal integrated circuit card (UICC); this smart card is usually made of PVC with embedded contacts and semiconductors, with the SIM as its primary component. In practice the term "SIM card" is still used to refer to the entire unit and not simply the IC. A SIM contains a unique serial number, integrated circuit card identification (ICCID), international mobile subscriber identity (IMSI) number, security authentication and ciphering information, temporary information related to the local network, a list of the services the user has access to, and four passwords: a personal identification number (PIN) for ordinary use, and a personal unblocking key (PUK) for PIN unlocking as well as a second pair (called PIN2 and PUK2 respectively) which are used for managing fixed dialing number and some other functionality. In Europe, the serial SIM number (SSN) is also sometimes accompanied by an international article number (IAN) or a European article number (EAN) required when registering online for the subscription of a prepaid card.As of 2020, eSIM is superseding physical SIM cards in some domains, including cellular telephony. eSIM uses a software-based SIM embedded into an irremovable eUICC.
+
+
+== History and procurement ==
+The SIM card is a type of smart card, the basis for which is the silicon integrated circuit (IC) chip. The idea of incorporating a silicon IC chip onto a plastic card originates from the late 1960s. Smart cards have since used MOS integrated circuit chips, along with MOS memory technologies such as flash memory and EEPROM (electrically EPROM).
+The SIM was initially specified by the ETSI in the specification TS 11.11. This describes the physical and logical behaviour of the SIM. With the development of the Universal Mobile Telecommunications System (UMTS), the specification work was partially transferred to 3GPP. 3GPP is now responsible for the further development of applications like SIM (TS 51.011) and USIM (TS 31.102) and ETSI for the further development of the physical card UICC.
+The first SIM card was manufactured in 1991 by Munich smart-card maker Giesecke+Devrient, who sold the first 300 SIM cards to the Finnish wireless network operator Radiolinja, who launched the world's first commercial 2G GSM cell network that year.
+Today, SIM cards are considered ubiquitous, allowing over 8 billion devices to connect to cellular networks around the world daily. According to the International Card Manufacturers Association (ICMA), there were 5.4 billion SIM cards manufactured globally in 2016 creating over $6.5 billion in revenue for traditional SIM card vendors. The rise of cellular IoT and 5G networks was predicted by Ericsson to drive the growth of the addressable market for SIM cards to over 20 billion devices by 2020. The introduction of embedded-SIM (eSIM) and remote SIM provisioning (RSP) from the GSMA may disrupt the traditional SIM card ecosystem with the entrance of new players specializing in "digital" SIM card provisioning and other value-added services for mobile network operators.
+
+
+== Design ==
+
+There are three operating voltages for SIM cards: 5 V, 3 V and 1.8 V (ISO/IEC 7816-3 classes A, B and C, respectively). The operating voltage of the majority of SIM cards launched before 1998 was 5 V. SIM cards produced subsequently are compatible with 3 V and 5 V. Modern cards support 5 V, 3 V and 1.8 V.
+
+Modern SIM cards allow applications to load when the SIM is in use by the subscriber. These applications communicate with the handset or a server using SIM Application Toolkit, which was initially specified by 3GPP in TS 11.14. (There is an identical ETSI specification with different numbering.) ETSI and 3GPP maintain the SIM specifications. The main specifications are: ETSI TS 102 223 (the toolkit for smart cards), ETSI TS 102 241 (API), ETSI TS 102 588 (application invocation), and ETSI TS 131 111 (toolkit for more SIM-likes). SIM toolkit applications were initially written in native code using proprietary APIs. To provide interoperability of the applications, ETSI chose Java Card. A multi-company collaboration called GlobalPlatform defines some extensions on the cards, with additional APIs and features like more cryptographic security and RFID contactless use added.
+
+
+== Data ==
+SIM cards store network-specific information used to authenticate and identify subscribers on the network. The most important of these are the ICCID, IMSI, authentication key (Ki), local area identity (LAI) and operator-specific emergency number. The SIM also stores other carrier-specific data such as the SMSC (Short Message service center) number, service provider name (SPN), service dialing numbers (SDN), advice-of-charge parameters and value-added service (VAS) applications. (Refer to GSM 11.11.)
+SIM cards can come in various data capacities, from 8 KB to at least 256 KB. All can store a maximum of 250 contacts on the SIM, but while the 32 KB has room for 33 Mobile country code (MCCs) or network identifiers, the 64 KB version has room for 80 MNCs. This is used by network operators to store data on preferred networks, mostly used when the SIM is not in its home network but is roaming. The network operator that issued the SIM card can use this to have a phone connect to a preferred network that is more economic for the provider instead of having to pay the network operator that the phone discovered first. This does not mean that a phone containing this SIM card can connect to a maximum of only 33 or 80 networks, instead it means that the SIM card issuer can specify only up to that number of preferred networks. If a SIM is outside these preferred networks, it uses the first or best available network.
+
+
+=== ICCID ===
+Each SIM is internationally identified by its integrated circuit card identifier (ICCID). Nowadays ICCID numbers are also used to identify eSIM profiles, not only physical SIM cards. ICCIDs are stored in the SIM cards and are also engraved or printed on the SIM card body during a process called personalisation.
+The ICCID is defined by the ITU-T recommendation E.118 as the primary account number. Its layout is based on ISO/IEC 7812. According to E.118, the number can be up to 19 digits long, including a single check digit calculated using the Luhn algorithm. However, the GSM Phase 1 defined the ICCID length as an opaque data field, 10 octets (20 digits) in length, whose structure is specific to a mobile network operator.
+The number is composed of three subparts:
+
+Issuer identification number (IIN)
+Check digit
+Individual account identification
+Their format is as follows.
+
+
+==== Issuer identification number (IIN) ====
+Maximum of seven digits:
+Major industry identifier (MII), 2 fixed digits, 89 for telecommunication purposes.
+Country code, 2 or 3 digits, as defined by ITU-T recommendation E.164.
+NANP countries, apart from Canada, use 01, i.e. prepending a zero to their common calling code +1
+Canada uses 302
+Russia uses 701, i.e. appending 01 to its calling code +7
+Kazakhstan uses 997, even though it shares the calling code +7 with Russia
+Issuer identifier, 1–4 digits.
+Often identical to the Mobile country code (MCC).
+
+
+==== Individual account identification ====
+Its length is variable, but every number under one IIN has the same length.
+Often identical to the Mobile identification number (MIN).
+
+
+==== Check digit ====
+Single digit calculated from the other digits using the Luhn algorithm.
+With the GSM Phase 1 specification using 10 octets into which ICCID is stored as packed BCD, the data field has room for 20 digits with hexadecimal digit "F" being used as filler when necessary.  In practice, this means that on GSM  cards there are 20-digit (19+1) and 19-digit (18+1) ICCIDs in use, depending upon the issuer. However, a single issuer always uses the same size for its ICCIDs.
+As required by E.118, the ITU-T updates a list of all current internationally assigned IIN codes in its Operational Bulletins which are published twice a month (the last as of January 2019 was No. 1163 from 1 January 2019). ITU-T also publishes complete lists: as of August 2023, the list issued on 1 December 2018 was current, having all issuer identifier numbers before 1 December 2018.
+
+
+=== International mobile subscriber identity (IMSI) ===
+SIM cards are identified on their individual operator networks by a unique international mobile subscriber identity (IMSI). Mobile network operators connect mobile phone calls and communicate with their market SIM cards using their IMSIs. The format is:
+
+The first three digits represent the Mobile country code (MCC).
+The next two or three digits represent the Mobile network code (MNC). Three-digit MNC codes are allowed by E.212 but are mainly used in the United States and Canada. One MCC can have both 2 digit and 3 digit MNCs, an example is 350 007.
+The next digits represent the Mobile identification number (MSIN).
+Normally there are 10 digits, but can be fewer in the case of a 3-digit MNC or if national regulations indicate that the total length of the IMSI should be less than 15 digits.
+Digits are different from country to country.
+
+
+=== Authentication key (Ki) ===
+The Ki is a 128-bit value used in authenticating the SIMs on a GSM mobile network (for USIM network, the Ki is still needed but other parameters are also needed). Each SIM holds a unique Ki assigned to it by the operator during the personalisation process. The Ki is also stored in a database (termed authentication center or AuC) on the carrier's network.
+The SIM card is designed to prevent someone from getting the Ki by using the smart-card interface. Instead, the SIM card provides a function, Run GSM Algorithm, that the phone uses to pass data to the SIM card to be signed with the Ki. This, by design, makes using the SIM card mandatory unless the Ki can be extracted from the SIM card, or the carrier is willing to reveal the Ki. In practice, the GSM cryptographic algorithm for computing a signed response (SRES_1/SRES_2: see steps 3 and 4, below) from the Ki has certain vulnerabilities that can allow the extraction of the Ki from a SIM card and the making of a duplicate SIM card.
+Authentication process:
+
+When the mobile equipment starts up, it obtains the international mobile subscriber identity (IMSI) from the SIM card, and passes this to the mobile operator, requesting access and authentication. The mobile equipment may have to pass a PIN to the SIM card before the SIM card reveals this information.
+The operator network searches its database for the incoming IMSI and its associated Ki.
+The operator network then generates a random number (RAND, which is a nonce) and signs it with the Ki associated with the IMSI (and stored on the SIM card), computing another number, that is split into the Signed Response 1 (SRES_1, 32 bits) and the encryption key Kc (64 bits).
+The operator network then sends the RAND to the mobile equipment, which passes it to the SIM card. The SIM card signs it with its Ki, producing Signed Response 2 (SRES_2) and Kc, which it gives to the mobile equipment. The mobile equipment passes SRES_2 on to the operator network.
+The operator network then compares its computed SRES_1 with the computed SRES_2 that the mobile equipment returned. If the two numbers match, the SIM is authenticated and the mobile equipment is granted access to the operator's network. Kc is used to encrypt all further communications between the mobile equipment and the operator.
+
+
+=== Location area identity ===
+The SIM stores network state information, which is received from the location area identity (LAI). Operator networks are divided into location areas, each having a unique LAI number. When the device changes locations, it stores the new LAI to the SIM and sends it back to the operator network with its new location. If the device is power cycled, it takes data off the SIM, and searches for the prior LAI.
+
+
+=== SMS messages and contacts ===
+Most SIM cards store a number of SMS messages and phone book contacts. It stores the contacts in simple "name and number" pairs. Entries that contain multiple phone numbers and additional phone numbers are usually not stored on the SIM card. When a user tries to copy such entries to a SIM, the handset's software breaks them into multiple entries, discarding information that is not a phone number. The number of contacts and messages stored depends on the SIM; early models stored as few as five messages and 20 contacts, while modern SIM cards can usually store over 250 contacts.
+
+
+== Formats ==
+SIM cards have been made smaller over the years; functionality is independent of format. Full-size SIM was followed by mini-SIM, micro-SIM, and nano-SIM. SIM cards are also made to embed in devices.
+
+All versions of the non-embedded SIM cards share the same ISO/IEC 7816 pin arrangement.
+
+
+=== Mini-SIM ===
+
+The mini-SIM or (2FF , 2nd form factor) card has the same contact arrangement as the full-size SIM card and is normally supplied within a full-size card carrier, attached by a number of linking pieces. This arrangement (defined in ISO/IEC 7810 as ID-1/000) lets such a card be used in a device that requires a full-size card –  or in a device that requires a mini-SIM card, after breaking the linking pieces. As the full-size SIM is obsolete, some suppliers refer to the mini-SIM as a "standard SIM" or "regular SIM".
+
+
+=== Micro-SIM ===
+The micro-SIM (or 3FF) card has the same thickness and contact arrangements, but reduced length and width as shown in the table above.
+The micro-SIM was introduced by the European Telecommunications Standards Institute (ETSI) along with SCP, 3GPP (UTRAN/GERAN), 3GPP2 (CDMA2000), ARIB, GSM Association (GSMA SCaG and GSMNA), GlobalPlatform, Liberty Alliance, and the Open Mobile Alliance (OMA) for the purpose of fitting into devices too small for a mini-SIM card.
+The form factor was mentioned in the December 1998 3GPP SMG9 UMTS Working Party, which is the standar

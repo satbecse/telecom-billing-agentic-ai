@@ -1,0 +1,302 @@
+[
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "What is Dileep Kumar's total bill for January 2026?",
+    "ground_truth": "$137.14",
+    "answer": "Dileep Kumar's total bill for January 2026 is $137.14.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "Why is Dileep's bill higher this month?",
+    "ground_truth": "The bill is higher due to 35 minutes of international calls to India on December 28 2025, costing $8.75 at $0.25 per minute.",
+    "answer": "Dileep's bill is higher this month due to several factors: \n\n1. Current Charges: $137.14, which includes:\n   - Monthly Plan Charges: $44.99 (after AutoPay discount)\n   - Add-On Services: $27.98\n   - Device Payment: $41.67\n   - Usage Charges: $8.75 (for international call overage)\n   - Taxes and Fees: $13.75\n\nThe combination of these charges contributes to the total amount due.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.9,
+    "avg_score": 0.9666666666666667
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "What is John Smith's current plan and monthly base cost?",
+    "ground_truth": "Business Pro Plan at $69.99 per month.",
+    "answer": "John Smith's current plan is the Business Pro Plan with a monthly base cost of $69.99.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "Did Sathish Kumar have any data overages this month?",
+    "ground_truth": "Yes, Sathish used 55GB against a 50GB limit, resulting in a $25.00 data overage charge.",
+    "answer": "Yes, Sathish Kumar had a data overage of 5GB on Line 1, which resulted in a charge of $25.00.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "What is the payment due date for Suresh Patel's January 2026 bill?",
+    "ground_truth": "January 25, 2026.",
+    "answer": "The payment due date for Suresh Patel's January 2026 bill is January 25, 2026.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "What happens if I miss my payment due date?",
+    "ground_truth": "A $10 late fee is applied after 15 days. After 30 days it increases to $25 and service may be suspended.",
+    "answer": "If you miss your payment due date, the following occurs:\n\n1. **Days 1-15 Past Due**: A late fee of $10.00 is assessed, no service interruption occurs, and a reminder notification is sent via email and SMS.\n2. **Days 16-30 Past Due**: An additional late fee of $15.00 is added (totaling $25.00 in late fees), your account is flagged for potential suspension, and you will receive a phone call from the collections team.\n3. **Days 31-60 Past Due**: Data and voice services are suspended, a reactivation fee of $35.00 is charged in addition to the outstanding balance, and your account is referred to the collections department.\n4. **Days 61+ Past Due**: Your account is permanently closed, the remaining device balance becomes due immediately, delinquency is reported to credit bureaus, and the account is sent to a third-party collections agency.\n\nTotal late fees cannot exceed $50.00 per billing cycle, and late fees may be waived for customers experiencing documented financial hardship.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "When was AT&T founded and what was its original name?",
+    "ground_truth": "AT&T was founded in 1983 as Southwestern Bell Corporation after the breakup of the Bell System.",
+    "answer": "AT&T was founded on March 3, 1885, and its original name was the American Telephone and Telegraph Company.",
+    "faithfulness": 0.0,
+    "relevancy": 1.0,
+    "correctness": 0.0,
+    "avg_score": 0.3333333333333333
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "What is a Federal Universal Service Fund fee and why am I charged for it?",
+    "ground_truth": "The Federal Universal Service Fund (FUSF) is a federal program that subsidizes telecommunications for rural, low-income, and school/library users. All telecom subscribers are charged to fund it.",
+    "answer": "The Federal Universal Service Fund fee is a charge applied to all plans to help fund programs that provide telecommunications services to underserved areas and low-income consumers. It is a government-mandated fee, and in your invoice, it is listed as $2.50/month.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.8,
+    "avg_score": 0.9333333333333332
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "How does AT&T's 5G rollout compare to industry standards?",
+    "ground_truth": "AT&T was one of the first carriers to launch 5G in the US in 2018, initially focusing on millimeter wave 5G in select cities before expanding to nationwide coverage.",
+    "answer": "I don't have information on AT&T's 5G rollout or how it compares to industry standards.",
+    "faithfulness": 0.0,
+    "relevancy": 0.0,
+    "correctness": 0.0,
+    "avg_score": 0.0
+  },
+  {
+    "rag_strategy": "Naive RAG",
+    "query": "Can I dispute a charge on my bill and what is the process?",
+    "ground_truth": "Yes. Contact support within 60 days of the bill date, provide your account number and the disputed charge details. Resolution takes 5 to 10 business days.",
+    "answer": "Yes, you can dispute a charge on your bill. The process is as follows:\n\n1. **Initial Dispute Filing**: You must file the dispute within 60 days of the invoice date. You can file a dispute through:\n   - Online: telcomax.example/dispute\n   - Phone: 1-800-TELCOMAX (option 4)\n   - Mail: TelcoMax Dispute Center, PO Box 12345, Dallas, TX 75201\n   - In-Store: Any authorized TelcoMax retail location\n\n   Required information includes:\n   - Account number\n   - Invoice number being disputed\n   - Specific charges disputed\n   - Reason for dispute\n   - Supporting documentation (if applicable)\n\n2. **Investigation**: TelcoMax will investigate the dispute within 30 business days. The disputed amount will be placed on hold, and no late fees will accrue on it. You will be notified of the investigation status every 10 business days.\n\n3. **Resolution**: Possible outcomes include:\n   - Dispute UPHELD: Charges removed or credited to your account\n   - Dispute PARTIALLY UPHELD: Partial credit issued\n   - Dispute DENIED: Original charges stand; you must pay within 15 days\n\n4. **Appeal Process**: If the dispute is denied, you may appeal within 30 days to:\n   - TelcoMax Executive Customer Relations\n   - Texas Public Utility Commission (PUC)\n   - Federal Communications Commission (FCC) for interstate matters.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.8,
+    "avg_score": 0.9333333333333332
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "What is Dileep Kumar's total bill for January 2026?",
+    "ground_truth": "$137.14",
+    "answer": "Dileep Kumar's total bill for January 2026 is $137.14.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "Why is Dileep's bill higher this month?",
+    "ground_truth": "The bill is higher due to 35 minutes of international calls to India on December 28 2025, costing $8.75 at $0.25 per minute.",
+    "answer": "Dileep's bill is higher this month due to several factors: \n\n1. Current Charges: $137.14, which includes:\n   - Monthly Plan Charges: $44.99 (after AutoPay discount)\n   - Add-on Services: $27.98\n   - Device Payment: $41.67\n   - Usage Charges: $8.75 (for international call overage)\n   - Taxes and Fees: $13.75\n\nThe combination of these charges contributes to the total amount due.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "What is John Smith's current plan and monthly base cost?",
+    "ground_truth": "Business Pro Plan at $69.99 per month.",
+    "answer": "John Smith's current plan is the Business Pro Plan, and the monthly base cost is $69.99.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "Did Sathish Kumar have any data overages this month?",
+    "ground_truth": "Yes, Sathish used 55GB against a 50GB limit, resulting in a $25.00 data overage charge.",
+    "answer": "Yes, Sathish Kumar had a data overage of 5GB on Line 1, resulting in a charge of $25.00.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "What is the payment due date for Suresh Patel's January 2026 bill?",
+    "ground_truth": "January 25, 2026.",
+    "answer": "The payment due date for Suresh Patel's January 2026 bill is January 25, 2026.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "What happens if I miss my payment due date?",
+    "ground_truth": "A $10 late fee is applied after 15 days. After 30 days it increases to $25 and service may be suspended.",
+    "answer": "If you miss your payment due date, the following occurs:\n\n1. **Days 1-15 Past Due**: A late fee of $10.00 is assessed, no service interruption occurs, and a reminder notification is sent via email and SMS.\n2. **Days 16-30 Past Due**: An additional late fee of $15.00 is added (totaling $25.00 in late fees), your account is flagged for potential suspension, and you will receive a phone call from the collections team.\n3. **Days 31-60 Past Due**: Your data and voice services will be suspended, a reactivation fee of $35.00 will be charged in addition to the outstanding balance, and your account will be referred to the collections department.\n4. **Days 61+ Past Due**: Your account will be permanently closed, the remaining device balance becomes due immediately, delinquency will be reported to credit bureaus, and your account will be sent to a third-party collections agency.\n\nAdditionally, total late fees cannot exceed $50.00 per billing cycle, and late fees may be waived for customers experiencing documented financial hardship.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "When was AT&T founded and what was its original name?",
+    "ground_truth": "AT&T was founded in 1983 as Southwestern Bell Corporation after the breakup of the Bell System.",
+    "answer": "AT&T was founded on March 3, 1885, and its original name was the American Telephone and Telegraph Company.",
+    "faithfulness": 0.0,
+    "relevancy": 1.0,
+    "correctness": 0.0,
+    "avg_score": 0.3333333333333333
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "What is a Federal Universal Service Fund fee and why am I charged for it?",
+    "ground_truth": "The Federal Universal Service Fund (FUSF) is a federal program that subsidizes telecommunications for rural, low-income, and school/library users. All telecom subscribers are charged to fund it.",
+    "answer": "The Federal Universal Service Fund fee is a charge applied to all plans to support the Universal Service Fund, which aims to ensure that all Americans have access to affordable telecommunications services. It is typically $2.50/month.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.8,
+    "avg_score": 0.9333333333333332
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "How does AT&T's 5G rollout compare to industry standards?",
+    "ground_truth": "AT&T was one of the first carriers to launch 5G in the US in 2018, initially focusing on millimeter wave 5G in select cities before expanding to nationwide coverage.",
+    "answer": "The provided context does not contain information about AT&T's 5G rollout or how it compares to industry standards.",
+    "faithfulness": 1.0,
+    "relevancy": 0.0,
+    "correctness": 0.0,
+    "avg_score": 0.3333333333333333
+  },
+  {
+    "rag_strategy": "HyDE RAG",
+    "query": "Can I dispute a charge on my bill and what is the process?",
+    "ground_truth": "Yes. Contact support within 60 days of the bill date, provide your account number and the disputed charge details. Resolution takes 5 to 10 business days.",
+    "answer": "Yes, you can dispute a charge on your bill. The process is as follows:\n\n1. **Initial Dispute Filing**: You must file the dispute within 60 days of the invoice date. You can file a dispute online, by phone, by mail, or in-store. Required information includes your account number, invoice number, specific charges disputed, reason for dispute, and any supporting documentation.\n\n2. **Investigation**: TelcoMax will investigate the dispute within 30 business days. The disputed amount will be placed on hold, and no late fees will accrue on it. You will be notified of the investigation status every 10 business days.\n\n3. **Resolution**: Possible outcomes include:\n   - Dispute UPHELD: Charges removed or credited to your account.\n   - Dispute PARTIALLY UPHELD: Partial credit issued.\n   - Dispute DENIED: Original charges stand; you must pay within 15 days.\n\n4. **Appeal Process**: If the dispute is denied, you may appeal within 30 days to TelcoMax Executive Customer Relations, the Texas Public Utility Commission (PUC), or the Federal Communications Commission (FCC) for interstate matters.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.8,
+    "avg_score": 0.9333333333333332
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "What is Dileep Kumar's total bill for January 2026?",
+    "ground_truth": "$137.14",
+    "answer": "Dileep Kumar's total bill for January 2026 is $137.14.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "Why is Dileep's bill higher this month?",
+    "ground_truth": "The bill is higher due to 35 minutes of international calls to India on December 28 2025, costing $8.75 at $0.25 per minute.",
+    "answer": "Dileep's bill is higher this month due to several factors: \n\n1. Current Charges: $137.14, which includes:\n   - Monthly Plan Charges: $44.99 (after AutoPay discount)\n   - Add-On Services: $27.98\n   - Device Payment: $41.67\n   - Usage Charges: $8.75 (for international call overage)\n   - Taxes and Fees: $13.75\n\nThe combination of these charges contributes to the total amount due.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.9,
+    "avg_score": 0.9666666666666667
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "What is John Smith's current plan and monthly base cost?",
+    "ground_truth": "Business Pro Plan at $69.99 per month.",
+    "answer": "John Smith's current plan is the Business Pro Plan with a monthly base cost of $69.99.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "Did Sathish Kumar have any data overages this month?",
+    "ground_truth": "Yes, Sathish used 55GB against a 50GB limit, resulting in a $25.00 data overage charge.",
+    "answer": "Yes, Sathish Kumar had a data overage of 5GB on Line 1, resulting in a charge of $25.00.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "What is the payment due date for Suresh Patel's January 2026 bill?",
+    "ground_truth": "January 25, 2026.",
+    "answer": "The payment due date for Suresh Patel's January 2026 bill is January 25, 2026.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "What happens if I miss my payment due date?",
+    "ground_truth": "A $10 late fee is applied after 15 days. After 30 days it increases to $25 and service may be suspended.",
+    "answer": "If you miss your payment due date, the following occurs:\n\n1. **Grace Period**: You have a 15-day grace period from the invoice date to submit payment without incurring late fees.\n2. **Late Fee Schedule**:\n   - Days 1-15 Past Due: A flat late fee of $10.00 is assessed, and no service interruption occurs.\n   - Days 16-30 Past Due: An additional late fee of $15.00 is added (totaling $25.00), and your account may be flagged for potential suspension.\n   - Days 31-60 Past Due: Data and voice services are suspended, a reactivation fee of $35.00 is charged, and your account is referred to collections.\n   - Days 61+ Past Due: Your account may be permanently closed, and the remaining device balance becomes due immediately. Delinquency is reported to credit bureaus, and the account is sent to a third-party collections agency.\n\nTotal late fees cannot exceed $50.00 per billing cycle, and late fees may be waived for customers experiencing documented financial hardship.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 1.0,
+    "avg_score": 1.0
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "When was AT&T founded and what was its original name?",
+    "ground_truth": "AT&T was founded in 1983 as Southwestern Bell Corporation after the breakup of the Bell System.",
+    "answer": "AT&T was founded on March 3, 1885, and its original name was the American Telephone and Telegraph Company.",
+    "faithfulness": 0.0,
+    "relevancy": 1.0,
+    "correctness": 0.0,
+    "avg_score": 0.3333333333333333
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "What is a Federal Universal Service Fund fee and why am I charged for it?",
+    "ground_truth": "The Federal Universal Service Fund (FUSF) is a federal program that subsidizes telecommunications for rural, low-income, and school/library users. All telecom subscribers are charged to fund it.",
+    "answer": "The Federal Universal Service Fund fee is a charge applied to all plans to help fund programs that provide telecommunications services to underserved areas and low-income consumers. It is a government-mandated fee, and in your invoice, it is listed as $2.50/month.",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.8,
+    "avg_score": 0.9333333333333332
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "How does AT&T's 5G rollout compare to industry standards?",
+    "ground_truth": "AT&T was one of the first carriers to launch 5G in the US in 2018, initially focusing on millimeter wave 5G in select cities before expanding to nationwide coverage.",
+    "answer": "I don't have information on AT&T's 5G rollout or how it compares to industry standards.",
+    "faithfulness": 0.0,
+    "relevancy": 0.0,
+    "correctness": 0.0,
+    "avg_score": 0.0
+  },
+  {
+    "rag_strategy": "Multi-Query RAG",
+    "query": "Can I dispute a charge on my bill and what is the process?",
+    "ground_truth": "Yes. Contact support within 60 days of the bill date, provide your account number and the disputed charge details. Resolution takes 5 to 10 business days.",
+    "answer": "Yes, you can dispute a charge on your bill. The process is as follows:\n\n1. **Initial Dispute Filing**: You must file the dispute within 60 days of the invoice date. You can file a dispute through:\n   - Online: telcomax.example/dispute\n   - Phone: 1-800-TELCOMAX (option 4)\n   - Mail: TelcoMax Dispute Center, PO Box 12345, Dallas, TX 75201\n   - In-Store: Any authorized TelcoMax retail location\n\n   Required information includes:\n   - Account number\n   - Invoice number being disputed\n   - Specific charges disputed\n   - Reason for dispute\n   - Supporting documentation (if applicable)\n\n2. **Investigation**: TelcoMax will investigate the dispute within 30 business days. The disputed amount will be placed on hold, and no late fees will accrue on it. You will be notified of the investigation status every 10 business days.\n\n3. **Resolution**: Possible outcomes include:\n   - Dispute UPHELD: Charges removed or credited to your account\n   - Dispute PARTIALLY UPHELD: Partial credit issued\n   - Dispute DENIED: Original charges stand; you must pay within 15 days\n\n4. **Appeal Process**: If the dispute is denied, you may appeal within 30 days to:\n   - TelcoMax Executive Customer Relations\n   - Texas Public Utility Commission (PUC)\n   - Federal Communications Commission (FCC) for interstate matters",
+    "faithfulness": 1.0,
+    "relevancy": 1.0,
+    "correctness": 0.8,
+    "avg_score": 0.9333333333333332
+  }
+]

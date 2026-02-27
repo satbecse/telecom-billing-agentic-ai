@@ -1,0 +1,62 @@
+
+================================================================================
+  RAG EVALUATION COMPARISON REPORT
+================================================================================
+
+  SUMMARY (Average scores across all queries)
+  ----------------------------------------------------------------------------
+  RAG Strategy           Faithfulness    Relevancy   Correctness    Avg Score
+  ----------------------------------------------------------------------------
+  Naive RAG                     0.800        0.900         0.750        0.817 
+  HyDE RAG                      0.900        0.900         0.760        0.853 <-- BEST
+  Multi-Query RAG               0.800        0.900         0.750        0.817
+  ----------------------------------------------------------------------------
+
+  WINNER: HyDE RAG (avg score: 0.853)
+
+
+  PER-QUERY BREAKDOWN
+  ----------------------------------------------------------------------------
+  #    Query                                    Strategy             F     R     C    Avg
+  ----------------------------------------------------------------------------
+  Q1: What is Dileep Kumar's total bill fo...  Naive RAG         1.00  1.00  1.00   1.00
+                                               HyDE RAG          1.00  1.00  1.00   1.00
+                                               Multi-Query RAG   1.00  1.00  1.00   1.00
+
+  Q2: Why is Dileep's bill higher this mon...  Naive RAG         1.00  1.00  0.90   0.97
+                                               HyDE RAG          1.00  1.00  1.00   1.00
+                                               Multi-Query RAG   1.00  1.00  0.90   0.97
+
+  Q3: What is John Smith's current plan an...  Naive RAG         1.00  1.00  1.00   1.00
+                                               HyDE RAG          1.00  1.00  1.00   1.00
+                                               Multi-Query RAG   1.00  1.00  1.00   1.00
+
+  Q4: Did Sathish Kumar have any data over...  Naive RAG         1.00  1.00  1.00   1.00
+                                               HyDE RAG          1.00  1.00  1.00   1.00
+                                               Multi-Query RAG   1.00  1.00  1.00   1.00
+
+  Q5: What is the payment due date for Sur...  Naive RAG         1.00  1.00  1.00   1.00
+                                               HyDE RAG          1.00  1.00  1.00   1.00
+                                               Multi-Query RAG   1.00  1.00  1.00   1.00
+
+  Q6: What happens if I miss my payment du...  Naive RAG         1.00  1.00  1.00   1.00
+                                               HyDE RAG          1.00  1.00  1.00   1.00
+                                               Multi-Query RAG   1.00  1.00  1.00   1.00
+
+  Q7: When was AT&T founded and what was i...  Naive RAG         0.00  1.00  0.00   0.33
+                                               HyDE RAG          0.00  1.00  0.00   0.33
+                                               Multi-Query RAG   0.00  1.00  0.00   0.33
+
+  Q8: What is a Federal Universal Service ...  Naive RAG         1.00  1.00  0.80   0.93
+                                               HyDE RAG          1.00  1.00  0.80   0.93
+                                               Multi-Query RAG   1.00  1.00  0.80   0.93
+
+  Q9: How does AT&T's 5G rollout compare t...  Naive RAG         0.00  0.00  0.00   0.00
+                                               HyDE RAG          1.00  0.00  0.00   0.33
+                                               Multi-Query RAG   0.00  0.00  0.00   0.00
+
+  Q10: Can I dispute a charge on my bill an... Naive RAG         1.00  1.00  0.80   0.93
+                                               HyDE RAG          1.00  1.00  0.80   0.93
+                                               Multi-Query RAG   1.00  1.00  0.80   0.93
+
+================================================================================

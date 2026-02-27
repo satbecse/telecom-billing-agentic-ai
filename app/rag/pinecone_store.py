@@ -104,7 +104,8 @@ class PineconeStore:
     def upsert_vectors(
         self,
         vectors: List[Dict],
-        batch_size: int = 100
+        batch_size: int = 100,
+        namespace: Optional[str] = None
     ) -> int:
         """
         Upsert (insert or update) vectors into the index.
@@ -114,16 +115,19 @@ class PineconeStore:
         Args:
             vectors: List of dicts with 'id', 'values' (embedding), 'metadata'
             batch_size: Number of vectors to upsert at once
+            namespace: Optional namespace to upsert into, defaults to target namespace
         
         Returns:
             Number of vectors upserted
         """
         total_upserted = 0
         
+        target_namespace = namespace if namespace else self.namespace
+        
         # Process in batches (Pinecone has limits on batch size)
         for i in range(0, len(vectors), batch_size):
             batch = vectors[i:i + batch_size]
-            self.index.upsert(vectors=batch, namespace=self.namespace)
+            self.index.upsert(vectors=batch, namespace=target_namespace)
             total_upserted += len(batch)
             logger.debug(f"Upserted batch {i // batch_size + 1}: {len(batch)} vectors")
         
@@ -134,7 +138,8 @@ class PineconeStore:
         self,
         query_embedding: List[float],
         top_k: int = 4,
-        include_metadata: bool = True
+        include_metadata: bool = True,
+        namespace: Optional[str] = None
     ) -> List[Dict]:
         """
         Query the index for similar vectors.
@@ -143,15 +148,17 @@ class PineconeStore:
             query_embedding: The embedding of the search query
             top_k: Number of results to return
             include_metadata: Whether to include document metadata
+            namespace: Optional namespace to query (defaults to self.namespace)
         
         Returns:
             List of matching documents with scores and metadata
         """
+        target_namespace = namespace if namespace else self.namespace
         results = self.index.query(
             vector=query_embedding,
             top_k=top_k,
             include_metadata=include_metadata,
-            namespace=self.namespace
+            namespace=target_namespace
         )
         
         # Convert Pinecone results to our format

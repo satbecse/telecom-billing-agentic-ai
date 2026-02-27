@@ -69,7 +69,8 @@ class TelecomRetriever:
     def retrieve(
         self,
         query: str,
-        top_k: int = RETRIEVAL_TOP_K
+        top_k: int = RETRIEVAL_TOP_K,
+        namespace: str = None
     ) -> Tuple[List[Dict], float]:
         """
         Retrieve relevant document chunks for a query.
@@ -77,6 +78,7 @@ class TelecomRetriever:
         Args:
             query: The user's question
             top_k: Number of chunks to retrieve
+            namespace: Optional namespace to search (defaults to telecom-docs)
         
         Returns:
             Tuple of (list of chunks, top similarity score)
@@ -96,7 +98,8 @@ class TelecomRetriever:
         matches = self.store.query(
             query_embedding=query_embedding,
             top_k=top_k,
-            include_metadata=True
+            include_metadata=True,
+            namespace=namespace
         )
         
         if not matches:

@@ -19,6 +19,7 @@ from typing import Dict, Optional, Tuple
 from openai import OpenAI
 
 from app.config import OPENAI_API_KEY, OPENAI_MODEL, QueryIntent
+from app.rag.retriever import TelecomRetriever
 from app.utils.logging import get_logger, print_agent_action
 from app.utils.guardrails import GuardrailsChecker
 
@@ -75,6 +76,7 @@ class SalesAgent:
         self.openai = OpenAI(api_key=OPENAI_API_KEY)
         self.model = OPENAI_MODEL
         self.guardrails = GuardrailsChecker()
+        self.retriever = TelecomRetriever()  # For Wikipedia RAG
         self.system_prompt = SALES_AGENT_SYSTEM_PROMPT
     
     def classify_query(self, query: str) -> str:
@@ -140,6 +142,9 @@ Respond with ONLY the category name, nothing else."""
         """
         Generate a response to the customer query.
         
+        NEW: Now retrieves relevant context from telecom-wiki namespace
+        (Wikipedia articles about AT&T, 5G, roaming, etc.)
+        
         Args:
             query: The customer's question
             context: Optional additional context (e.g., from previous agents)
@@ -152,6 +157,21 @@ Respond with ONLY the category name, nothing else."""
         messages = [
             {"role": "system", "content": self.system_prompt}
         ]
+        
+        # NEW: Retrieve from Wikipedia knowledge base for general telecom context
+        try:
+            wiki_chunks, wiki_score = self.retriever.retrieve(
+                query, top_k=3, namespace="telecom-wiki"
+            )
+            if wiki_chunks and wiki_score > 0.3:
+                wiki_context = self.retriever.format_context_for_llm(wiki_chunks)
+                messages.append({
+                    "role": "system",
+                    "content": f"## General Telecom Knowledge (from knowledge base):\n{wiki_context}\nUse this knowledge to enhance your answer when relevant."
+                })
+                print_agent_action("SalesAgent", f"Retrieved {len(wiki_chunks)} wiki chunks (score: {wiki_score:.3f})")
+        except Exception as e:
+            logger.warning(f"Wiki retrieval failed: {e}")
         
         if context:
             messages.append({

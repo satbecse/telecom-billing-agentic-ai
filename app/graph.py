@@ -52,8 +52,9 @@ Our Workflow:
 
 from typing import Dict, Any, TypedDict, Annotated, Optional
 from langgraph.graph import StateGraph, END
+from openai import OpenAI
 
-from app.config import QueryIntent
+from app.config import QueryIntent, OPENAI_API_KEY, OPENAI_EMBEDDING_MODEL
 from app.agents.sales import SalesAgent
 from app.agents.billing import BillingAgent
 from app.agents.manager import ManagerAgent
@@ -68,6 +69,18 @@ from app.utils.logging import (
 )
 
 logger = get_logger("graph")
+
+# RAG strategy selection (set via CLI --rag-strategy flag)
+_rag_strategy = "naive"  # default
+
+def set_rag_strategy(strategy: str):
+    """Set the RAG retrieval strategy (called from CLI)."""
+    global _rag_strategy
+    _rag_strategy = strategy
+    logger.info(f"RAG strategy set to: {strategy}")
+
+def get_rag_strategy() -> str:
+    return _rag_strategy
 
 
 # =============================================================================
@@ -209,27 +222,62 @@ def billing_node(state: GraphState) -> GraphState:
     2. Generates an answer with citations
     3. Passes to ManagerAgent for validation
     
-    NEW: Uses session context to enhance the query.
+    Supports RAG strategies: naive, hyde, multi-query
     """
     print_trace_header("Billing Agent")
     
     query = state["query"]
     session_context = state.get("session_context", "")
+    strategy = get_rag_strategy()
     
-    # NEW: Enhance query with session context for better retrieval
-    enhanced_query = query
+    print_agent_action("BillingAgent", f"Using RAG strategy: {strategy}")
+    
+    # Apply RAG strategy to modify the search query
+    search_query = query
     if session_context:
-        # Add context to help BillingAgent know which account to look for
-        enhanced_query = f"{session_context}\n\nUser question: {query}"
+        search_query = f"{session_context}\n\nUser question: {query}"
         print_agent_action("BillingAgent", f"Using session context for query")
     
-    # Process with RAG (pass both original and enhanced query)
-    billing_response = billing_agent.process_query(query, session_context=session_context)
+    if strategy == "hyde":
+        # HyDE: Generate hypothetical answer, use it for retrieval
+        openai_client = OpenAI(api_key=OPENAI_API_KEY)
+        hypothesis_resp = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a telecom billing expert. Write a concise hypothetical answer to the following question, as if you had a detailed billing document in front of you. Maximum 3 sentences."},
+                {"role": "user", "content": query}
+            ],
+            temperature=0.3, max_tokens=200
+        )
+        hypothesis = hypothesis_resp.choices[0].message.content
+        print_agent_action("BillingAgent", f"HyDE hypothesis: {hypothesis[:80]}...")
+        # Use hypothesis as the search query instead
+        billing_response = billing_agent.process_query(query, session_context=hypothesis)
+    elif strategy == "multi-query":
+        # Multi-Query: Generate variations, retrieve for all, merge
+        openai_client = OpenAI(api_key=OPENAI_API_KEY)
+        var_resp = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Generate 3 different phrasings of this telecom billing query. Return only the 3 queries, one per line."},
+                {"role": "user", "content": query}
+            ],
+            temperature=0.5, max_tokens=200
+        )
+        variations = [v.strip() for v in var_resp.choices[0].message.content.splitlines() if v.strip()][:3]
+        print_agent_action("BillingAgent", f"Multi-Query: {len(variations)} variations generated")
+        # Process with the original query (the retriever handles single queries)
+        # Pass session context that includes the variations for richer retrieval
+        enriched_context = session_context + "\n\nAlternative phrasings:\n" + "\n".join(variations) if session_context else "Alternative phrasings:\n" + "\n".join(variations)
+        billing_response = billing_agent.process_query(query, session_context=enriched_context)
+    else:
+        # Naive RAG: direct query
+        billing_response = billing_agent.process_query(query, session_context=session_context)
     
     # Store response for manager validation
     state["billing_response"] = billing_response
     state["trace"].append(
-        f"BillingAgent: retrieved docs, score={billing_response.get('top_score', 0):.3f}"
+        f"BillingAgent [{strategy}]: retrieved docs, score={billing_response.get('top_score', 0):.3f}"
     )
     
     return state

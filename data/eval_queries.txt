@@ -1,0 +1,14 @@
+# Evaluation Queries for Telecom Billing RAG Comparison
+# Format: query | ground_truth
+# These 10 queries test: simple retrieval, reasoning, policy lookup, and AT&T Wikipedia knowledge
+
+What is Dileep Kumar's total bill for January 2026? | $137.14
+Why is Dileep's bill higher this month? | The bill is higher due to 35 minutes of international calls to India on December 28 2025, costing $8.75 at $0.25 per minute.
+What is John Smith's current plan and monthly base cost? | Business Pro Plan at $69.99 per month.
+Did Sathish Kumar have any data overages this month? | Yes, Sathish used 55GB against a 50GB limit, resulting in a $25.00 data overage charge.
+What is the payment due date for Suresh Patel's January 2026 bill? | January 25, 2026.
+What happens if I miss my payment due date? | A $10 late fee is applied after 15 days. After 30 days it increases to $25 and service may be suspended.
+When was AT&T founded and what was its original name? | AT&T was founded in 1983 as Southwestern Bell Corporation after the breakup of the Bell System.
+What is a Federal Universal Service Fund fee and why am I charged for it? | The Federal Universal Service Fund (FUSF) is a federal program that subsidizes telecommunications for rural, low-income, and school/library users. All telecom subscribers are charged to fund it.
+How does AT&T's 5G rollout compare to industry standards? | AT&T was one of the first carriers to launch 5G in the US in 2018, initially focusing on millimeter wave 5G in select cities before expanding to nationwide coverage.
+Can I dispute a charge on my bill and what is the process? | Yes. Contact support within 60 days of the bill date, provide your account number and the disputed charge details. Resolution takes 5 to 10 business days.
