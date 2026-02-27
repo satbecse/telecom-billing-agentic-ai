@@ -34,8 +34,8 @@ graph TD
     Router -- "General Questions\n(Plans, AT&T info)" --> Sales["💼 Sales Agent\n(Reads Wikipedia)"]:::agent
     Router -- "Specific Account Info\n(My Bill, Due Date)" --> Billing["📊 Billing Agent\n(Reads Customer PDFs)"]:::agent
     
-    Sales --> QA["✅ Manager Agent\n(Verifies Answers & $ Amounts)"]:::manager
-    Billing --> QA
+    Sales --> User
+    Billing --> QA["✅ Manager Agent\n(Verifies Answers & $ Amounts)"]:::manager
     
     QA --> User
 ```
@@ -85,7 +85,9 @@ graph TD
         SalesAgent --> SalesGuard["Sales Guardrail<br/>Blocks Data Leaks"]:::guardrail
         BillingAgent --> BillingGuard["Billing Guardrail<br/>Validates JSON format"]:::guardrail
         
-        SalesGuard --> ManagerAgent
+        SalesGuard --> |Data Leak Detected| BillingAgent
+        SalesGuard --> |Safe Response| Output
+        
         BillingGuard --> ManagerAgent
         
         ManagerAgent["Manager Agent<br/>Validates Citations & $"]:::guardrail
